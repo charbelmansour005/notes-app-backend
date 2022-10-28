@@ -7,11 +7,18 @@ const jwt = require("jsonwebtoken");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "charbelmansour005@gmail.com",
-    pass: "encxvodkkuczlxdv",
+    user: "charbelmansour005@gmail.com", //must be a gmail account
+    pass: "encxvodkkuczlxdv", //must use app password generated from google
   },
 });
 
+/**
+ * Logging the user in
+ * using mongoose findOne( ) to find an email that matches the input,
+ * then using bcrypt to compare the entered password with the one that exists on the database
+ * then sending responses accordingly. The JWT token will last for 8 hours. The secret would be
+ * changed to become 32 characters long in a production version of the app
+ */
 exports.postLogin = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -46,7 +53,11 @@ exports.postLogin = (req, res) => {
         .json({ Error: "A user with this email could not be found." });
     });
 };
-
+/**
+ * User signs up, a welcome message gets send to him
+ * email must be unique, password must have 13 characters minimum (auth_validation.js)
+ * password gets hashed on database
+ */
 exports.putSignup = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

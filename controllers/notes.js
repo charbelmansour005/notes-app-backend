@@ -83,7 +83,7 @@ exports.getUserNotesLatest = (req, res) => {
  * User must fill out the 'categoryName' and the 'content' fields, whereas tags are optional.
  * Upon creating a note with a previously existing category, a new category will NOT be created,
  * only the note will be created and added to the signed in user under his 'notes' array,
- * as well as to the Notes collection, where it will also hold the user's ObjectId
+ * as well as to the Notes collection, where it will also include the creator's ObjectId
  *
  * Else, when creating a note with a * new * category, the latter will be created as well,
  * and both the note and the new category will be added to the User doc respectively under his 'notes'
