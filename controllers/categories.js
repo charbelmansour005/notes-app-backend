@@ -10,13 +10,16 @@ exports.getCategsOfUser = (req, res) => {
   const id = req.userId;
   Category.find({ creator: id })
     .then((categories) => {
-      res.status(200).json({ UserCategories: categories });
+      if (!categories.length) {
+        res
+          .status(404)
+          .json({ Error: "You do not have any categories, try adding some!" });
+      } else {
+        res.status(200).json({ UserCategories: categories });
+      }
     })
     .catch((err) => {
       console.log(err);
-      res
-        .status(404)
-        .json({ Error: "There was a problem fetching your categories..." });
     });
 };
 
@@ -103,11 +106,9 @@ exports.postAddCategory = (req, res) => {
           console.log(err);
         });
     } else {
-      res
-        .status(400)
-        .json({
-          Conflict: "A Category with that name already exists for you.",
-        });
+      res.status(400).json({
+        Conflict: "A Category with that name already exists for you.",
+      });
     }
   });
 };
