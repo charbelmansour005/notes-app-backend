@@ -83,20 +83,31 @@ exports.postAddCategory = (req, res) => {
     name: req.body.name,
     creator: Id,
   });
-  category
-    .save()
-    .then((category) => {
-      res.status(201).json({
-        category,
-        info: {
-          dateCreated: new Date().toISOString(),
-          status: "Category Created Successfully",
-        },
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  Category.find({
+    name: req.body.name,
+    creator: Id,
+  }).then((categories) => {
+    if (!categories.length) {
+      category
+        .save()
+        .then((category) => {
+          res.status(201).json({
+            category,
+            info: {
+              dateCreated: new Date().toISOString(),
+              status: "Category Created Successfully",
+            },
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      res
+        .status(400)
+        .json({ Conflict: "A Category with that name already exists." });
+    }
+  });
 };
 
 /**
