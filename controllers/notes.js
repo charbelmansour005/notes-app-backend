@@ -13,6 +13,7 @@ exports.filterbyCategory = (req, res) => {
     $and: [{ creator: id }, { categoryName: req.params.key }],
   }).then((data) => {
     if (data.length === 0) {
+      // same as !data.length
       res.status(404).json({
         Error: `No note(s) in the '${req.params.key}' category were found.`,
       });
@@ -33,7 +34,14 @@ exports.getNotesOfUser = (req, res) => {
   const id = req.userId;
   Note.find({ creator: id })
     .then((notes) => {
-      res.status(200).json({ usernotes: notes });
+      console.log(notes);
+      if (!notes.length) {
+        return res
+          .status(404)
+          .json({ Error: "You don't have any notes yet, create some!" });
+      } else {
+        res.status(200).json({ usernotes: notes });
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -71,7 +79,11 @@ exports.getUserNotesLatest = (req, res) => {
   Note.find({ creator: id })
     .sort({ updated_At: sort })
     .then((notes) => {
-      res.status(200).json({ usernotes: notes });
+      if (!notes.length) {
+        res.status(404).json({ Error: "No notes were found, write a note!" });
+      } else {
+        return res.status(200).json({ usernotes: notes });
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -196,7 +208,7 @@ exports.putOneNote = (req, res) => {
       }
       if (note.creator.toString() !== req.userId) {
         return res.status(401).json({ Error: "Not authorized to update note" });
-      } // (a 404 not found would be a better choice of response)
+      } // (a 404 would be a better choice of response in production mode )
       note.content = content;
       note.tags = tags;
       note.updated_At = updated_At;
@@ -279,9 +291,18 @@ exports.getOneNote = (req, res, next) => {
 };
 // Get all notes
 exports.getNotes = (req, res, next) => {
-  Note.find().then((note) => {
-    res.status(200).json(note);
-  });
+  Note.find()
+    .then((note) => {
+      if (!note.length) {
+        return res
+          .status(404)
+          .json({ Error: "No notes were found in the database." });
+      }
+      res.status(200).json(note);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 // Get all Notes by specific Sort
 exports.getAllNotesBySort = (req, res, next) => {
@@ -289,12 +310,15 @@ exports.getAllNotesBySort = (req, res, next) => {
   Note.find()
     .sort({ updated_At: sort })
     .then((note) => {
-      res.status(200).json({ info: "Found all notes", note: note });
-    })
-    .catch((error) => {
-      if (!error.statusCode) {
-        error.statusCode = 500;
+      if (!note.length) {
+        return res
+          .status(404)
+          .json({ Error: "No notes were found in the database." });
+      } else {
+        res.status(200).json({ info: "Found all notes", note: note });
       }
-      next(error);
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };

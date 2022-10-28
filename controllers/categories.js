@@ -180,7 +180,7 @@ exports.getOneCategory = (req, res) => {
     })
     .catch((err) => {
       console.log("Could not find category", err);
-      res.status(400).json({ Error: "Could not find the category." });
+      res.status(404).json({ Error: "Could not find the category." });
     });
 };
 
@@ -191,14 +191,17 @@ exports.getOneCategory = (req, res) => {
 exports.getAllCategories = (req, res) => {
   Category.find()
     .then((categ) => {
-      res
-        .status(200)
-        .json({ Success: "Fetched all categories of all users.", categ });
+      if (!categ.length) {
+        res
+          .status(404)
+          .json({ Error: "No Categories were found in the database" });
+      } else {
+        return res
+          .status(200)
+          .json({ Success: "Fetched all categories of all users.", categ });
+      }
     })
     .catch((err) => {
       console.log(err);
-      res
-        .status(404)
-        .json({ Error: "There was a problem fetching all the categories..." });
     });
 };
