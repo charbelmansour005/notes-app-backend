@@ -34,7 +34,7 @@ exports.postLogin = (req, res) => {
     })
     .then((isEqual) => {
       if (!isEqual) {
-        return res.json({ Error: "Wrong password." });
+        return res.status(401).json({ Error: "Wrong password." });
       }
       const token = jwt.sign(
         {
@@ -49,7 +49,7 @@ exports.postLogin = (req, res) => {
     .catch((error) => {
       console.log(error);
       res
-        .status(401)
+        .status(404)
         .json({ Error: "A user with this email could not be found." });
     });
 };
@@ -63,7 +63,7 @@ exports.postLogin = (req, res) => {
 exports.putSignup = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({
+    return res.status(400).json({
       message: "Validation FAILED, Password or Email format is incorrect",
       error: errors.array(),
     });
@@ -74,8 +74,8 @@ exports.putSignup = (req, res) => {
   User.findOne({ email: email })
     .then((userDoc) => {
       if (userDoc) {
-        res.status(400).json({
-          error:
+        res.status(409).json({
+          Conflict:
             "An existing Email address was found, please sign up using a different one.",
         });
         return console.log("Failed");
@@ -101,8 +101,5 @@ exports.putSignup = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(404).json({
-        Error: "There was a problem signing you up, please try again.",
-      });
     });
 };

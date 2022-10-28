@@ -33,7 +33,7 @@ exports.getNotesOfUser = (req, res) => {
   const id = req.userId;
   Note.find({ creator: id })
     .then((notes) => {
-      res.json({ usernotes: notes });
+      res.status(200).json({ usernotes: notes });
     })
     .catch((err) => {
       console.log(err);
@@ -54,7 +54,7 @@ exports.searchUserTags = (req, res) => {
       });
     } else {
       res.status(200).json({
-        Success: `${data.length} notes with the '${req.params.key}' tag were found.`,
+        Success: `${data.length} note(s) with the '${req.params.key}' tag were found.`,
         data,
       });
     }
@@ -71,7 +71,7 @@ exports.getUserNotesLatest = (req, res) => {
   Note.find({ creator: id })
     .sort({ updated_At: sort })
     .then((notes) => {
-      res.json({ usernotes: notes });
+      res.status(200).json({ usernotes: notes });
     })
     .catch((err) => {
       console.log(err);
@@ -139,13 +139,13 @@ exports.postAddNote = (req, res) => {
                 return user.save();
               });
             res.status(201).json({
-              Success: `Note created and saved into new '${req.body.categoryName}' Category`,
+              Success: `New Note and new '${req.body.categoryName}' Category was created for the note as well.`,
             });
           }) //new
           .catch((err) => {
             console.log(err);
             res.status(404).json({
-              Error: "Make sure you have filled out all the requried fields",
+              Error: "Make sure you have filled out all the required fields",
             });
           });
         return console.log("done, note saved with new category");
@@ -163,10 +163,10 @@ exports.postAddNote = (req, res) => {
             return user.save();
           });
         console.log(
-          `note created and added to exsiting '${req.body.categoryName}' category`
+          `Note created and added to exsiting '${req.body.categoryName}' category`
         );
         res.status(201).json({
-          Success: `note created and added to exsiting '${req.body.categoryName}' category`,
+          Success: `Note created and added to exsiting '${req.body.categoryName}' category`,
         });
       }
     })
@@ -280,7 +280,7 @@ exports.getOneNote = (req, res, next) => {
 // Get all notes
 exports.getNotes = (req, res, next) => {
   Note.find().then((note) => {
-    res.json(note);
+    res.status(200).json(note);
   });
 };
 // Get all Notes by specific Sort
@@ -289,7 +289,7 @@ exports.getAllNotesBySort = (req, res, next) => {
   Note.find()
     .sort({ updated_At: sort })
     .then((note) => {
-      res.json({ info: "Found all notes", note: note });
+      res.status(200).json({ info: "Found all notes", note: note });
     })
     .catch((error) => {
       if (!error.statusCode) {
