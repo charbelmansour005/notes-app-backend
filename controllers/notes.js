@@ -139,7 +139,7 @@ exports.postAddNote = (req, res) => {
                 return user.save();
               });
             res.status(201).json({
-              Success: "Note created and saved into a new category",
+              Success: `Note created and saved into new '${req.body.categoryName}' Category`,
             });
           }) //new
           .catch((err) => {
@@ -162,9 +162,11 @@ exports.postAddNote = (req, res) => {
             user.notes.push(note._id);
             return user.save();
           });
-        console.log("note created with exsiting category");
+        console.log(
+          `note created and added to exsiting '${req.body.categoryName}' category`
+        );
         res.status(201).json({
-          Success: "Note Created and added to existing category.",
+          Success: `note created and added to exsiting '${req.body.categoryName}' category`,
         });
       }
     })
@@ -183,6 +185,7 @@ exports.postAddNote = (req, res) => {
 exports.putOneNote = (req, res) => {
   const _id = req.params.id;
   const content = req.body.content;
+  const tags = req.body.tags;
   const updated_At = new Date();
   Note.findById(_id)
     .then((note) => {
@@ -195,6 +198,7 @@ exports.putOneNote = (req, res) => {
         return res.status(401).json({ Error: "Not authorized to update note" });
       }
       note.content = content;
+      note.tags = tags;
       note.updated_At = updated_At;
       return note.save();
     })
