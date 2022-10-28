@@ -138,7 +138,6 @@ exports.postAddNote = (req, res) => {
                 user.notes.push(note._id);
                 return user.save();
               });
-
             res.status(201).json({
               Success: "note saved with new category",
             });

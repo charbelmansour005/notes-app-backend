@@ -101,10 +101,8 @@ exports.putSignup = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res
-        .status(404)
-        .json({
-          Error: "There was a problem signing you up, please try again.",
-        });
+      res.status(404).json({
+        Error: "There was a problem signing you up, please try again.",
+      });
     });
 };

@@ -22,7 +22,8 @@ exports.getCategsOfUser = (req, res) => {
 
 /**
  * Signed in user may only delete one of his own categories
- * the deleted category gets deleted from the Category docs and gets pulled out from the user's categories
+ * the deleted category also gets deleted from the Category collection
+ * and gets pulled out from the user's categories field in the User collection
  * @param -> ObjectId of the target Category to be deleted
  * @route "/category/:id"
  */
