@@ -105,7 +105,9 @@ exports.postAddCategory = (req, res) => {
     } else {
       res
         .status(400)
-        .json({ Conflict: "A Category with that name already exists." });
+        .json({
+          Conflict: "A Category with that name already exists for you.",
+        });
     }
   });
 };
