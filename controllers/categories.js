@@ -129,21 +129,36 @@ exports.putCategory = (req, res) => {
       });
     }
     if (category.creator.toString() !== req.userId) {
-      return res.status(404).json({ Error: "Unauthorized to edit category" });
+      // Javascript doesn't know what a Mongoose ObjectId is
+      return res.status(401).json({ Error: "Unauthorized to edit category" });
     }
-    category.name = name;
-    return category
-      .save()
-      .then((result) => {
-        res
-          .status(200)
-          .json({ Success: "Updated category!", category: result });
-      })
-      .catch((error) => {
-        if (!error.statusCode) {
-          error.statudCode = 500;
+    const Id = req.userId;
+    Category.find({
+      name: req.body.name,
+      creator: Id,
+    })
+      .then((categories) => {
+        if (!categories.length) {
+          category.name = name;
+          return category
+            .save()
+            .then((result) => {
+              res
+                .status(200)
+                .json({ Success: "Updated category name!", category: result });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          res.json({
+            Error:
+              "A category with this name already exists, please update using another name.",
+          });
         }
-        console.log(error);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   });
 };
