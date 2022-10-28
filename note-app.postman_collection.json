@@ -1,0 +1,4326 @@
+{
+	"info": {
+		"_postman_id": "39cb4a2f-89ac-41f4-abee-a9cff0f4e2d9",
+		"name": "note-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20865445"
+	},
+	"item": [
+		{
+			"name": "My-Note-App",
+			"item": [
+				{
+					"name": "Create user note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\":\"Buy a new toy car\",\n    \"tags\":\"toy, car\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/API/note",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"note"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(charbel_mansour@gmail.com) Created new note and category for the note - example 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"Study for algebra final\",\n    \"categoryName\":\"algebra\",\n    \"tags\":\"math, algebra\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53-juOxmAr+zLVwWowl5P/dKbZDVvk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:27:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"New Note and new 'algebra' Category was created for the note as well.\"\n}"
+						},
+						{
+							"name": "(charbel_mansour@gmail.com) Created new note and category for the note - example 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"Do the algebra homework as well\",\n    \"categoryName\":\"algebra\",\n    \"tags\":\"math, algebra\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-WYbNDabFIhDkVmQJOWU8vLFZrHE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:29:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Note created and added to exsiting 'algebra' category\"\n}"
+						},
+						{
+							"name": "(charbel_mansour@gmail.com) Created new note (missing category field)  - example 3",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"Do the algebra homework as well\",\n    \"tags\":\"math, algebra\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-jF01LS/2y3SZe1Etwz2ZLUglXUc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:31:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"Make sure you have filled out all the required fields\"\n}"
+						},
+						{
+							"name": "(ugreen@gmail.com) Created new note and category for the note - example 4",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"I really need to study Algebra.\",\n    \"categoryName\":\"algebra\",\n    \"tags\":\"math, algebra\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53-juOxmAr+zLVwWowl5P/dKbZDVvk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:33:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"New Note and new 'algebra' Category was created for the note as well.\"\n}"
+						},
+						{
+							"name": "(ugreen@gmail.com) Created new note and category for the note - example 5",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"I passed my Algebra test! studying works...\",\n    \"categoryName\":\"algebra\",\n    \"tags\":\"math, algebra\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-WYbNDabFIhDkVmQJOWU8vLFZrHE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:35:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Note created and added to exsiting 'algebra' category\"\n}"
+						},
+						{
+							"name": "(ugreen@gmail.com) Created new note and category for the note - example 5",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"Now I need to get my science grades up\",\n    \"categoryName\":\"science\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53-GsrgeNclo5CG/GtxKekQ91vC4I8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:37:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"New Note and new 'science' Category was created for the note as well.\"\n}"
+						},
+						{
+							"name": "(ugreen@gmail.com) Created new note where Category was created using the Category CRUD - example 6",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"The category I belong to was created from the Category CRUD\",\n    \"categoryName\":\"space\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-IxNR4IngRJuZLMG2zzO6MiATREs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:42:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Note created and added to exsiting 'space' category\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User's Note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVncmVlbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzViZDY0ZDEzNWY0NjMwMGY4N2ZiM2UiLCJpYXQiOjE2NjY5NjkwMjMsImV4cCI6MTY2Njk5NzgyM30.Zd2dezuhsr6_st9n-GJzS-ywaVNIOCRHX83LPUq_ZY4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\":\"I'm the content and am being updated!\",\n    \"tags\":\"tags, being, udpated, as, well\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/API/note/635beb79b44892473eba67b3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"note",
+								"635beb79b44892473eba67b3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "put note example response 1",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"I'm the content and am being updated!\",\n    \"tags\":\"tags, being, udpated, as, well\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note/635beb79b44892473eba67b3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note",
+										"635beb79b44892473eba67b3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "279"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"117-E9THJvj04U2Bsf68V2DDQ2GzcSw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 15:28:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Updated note successfully.\",\n    \"note\": {\n        \"_id\": \"635beb79b44892473eba67b3\",\n        \"content\": \"I'm the content and am being updated!\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T15:28:38.704Z\",\n        \"tags\": \"tags, being, udpated, as, well\",\n        \"categoryName\": \"cars\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "put note example response 2",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"I'm not the creator of the note being updated!!\",\n    \"tags\":\"tags, being, udpated, as, well\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note/635beb79b44892473eba67b3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note",
+										"635beb79b44892473eba67b3"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-iIDTrDb6erzH3WQZAFLSS0JZ+uY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 15:41:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"Not authorized to update note\"\n}"
+						},
+						{
+							"name": "put note example response 3",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"I'm not the creator of the note being updated!!\",\n    \"tags\":\"tags, being, udpated, as, well\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note/635bfa7190a83c63f10f6736",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note",
+										"635bfa7190a83c63f10f6736"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-FW2CtHzOedgrlqujPoGQw6aH0nA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:00:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"Could not update, note was not found.\"\n}"
+						},
+						{
+							"name": "put note example response 4",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\":\"I'm not the creator of the note being updated!!\",\n    \"tags\":\"tags, being, udpated, as, well\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note/635bfa7190a83c63f10f6736",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note",
+										"635bfa7190a83c63f10f6736"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-3iizDox7XE1+j+ctJHe5QNgPnns\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:01:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Not authenticated, no headers\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User Note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYXJiZWxfbWFuc291ckBnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzViZjc4OGFjODNiNTMwMjc2ZTQ5ZGYiLCJpYXQiOjE2NjY5NzE1NDIsImV4cCI6MTY2NzAwMDM0Mn0.dXZpW5eLntmiqH60KM8r9WO59KgNWf_5Gbh47eg8oWA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"charbelmansour005@gmail.com\",\n    \"password\":\"Yi727727\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/API/note/635beb79b44892473eba67b3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"note",
+								"635beb79b44892473eba67b3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete note example response 1",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"charbelmansour005@gmail.com\",\n    \"password\":\"Yi727727\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note/635beb79b44892473eba67b3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note",
+										"635beb79b44892473eba67b3"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-7Z+M3QXoIJPu4MAf7LZbhY5/YtU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 15:44:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"Not authorized to delete this note\"\n}"
+						},
+						{
+							"name": "delete note example response 2",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"charbelmansour005@gmail.com\",\n    \"password\":\"Yi727727\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note/635bfa7190a83c63f10f6736",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note",
+										"635bfa7190a83c63f10f6736"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-iT9uThy4LO2QoRrgH9WarPTm3xU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 15:56:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"Could not delete, note was not found\"\n}"
+						},
+						{
+							"name": "delete note example response 3",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"charbelmansour005@gmail.com\",\n    \"password\":\"Yi727727\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note/635bfa7190a83c63f10f6736",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note",
+										"635bfa7190a83c63f10f6736"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-3iizDox7XE1+j+ctJHe5QNgPnns\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:01:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Not authenticated, no headers\"\n}"
+						},
+						{
+							"name": "delete note example response 4",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"charbelmansour005@gmail.com\",\n    \"password\":\"Yi727727\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/note/635bfad790a83c63f10f673f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"note",
+										"635bfad790a83c63f10f673f"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f-8sjvPZGSxb0/uDi7SsKuAZhU9aI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:04:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Note was deleted.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User's Notes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYXJiZWxtYW5zb3VyQGdtYWlsLmNvbSIsInVzZXJJZCI6IjYzNWI4N2U4MDI1ZGE5Zjk5M2FkNjc2NSIsImlhdCI6MTY2Njk0NzgwNCwiZXhwIjoxNjY2OTc2NjA0fQ.j0PjnHpDeo6P90a3JGn6dwKlhyZDlyin8UMJh_eAxG4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/API/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"notes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get signed in user's notes ex 1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "219"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"db-2zE08KzsKLB+NLXylammMvn0u5c\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:07:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"usernotes\": [\n        {\n            \"_id\": \"635bfd6ba906b0953d3b947f\",\n            \"content\": \"Try to always drink water\",\n            \"creator\": \"635bf788ac83b530276e49df\",\n            \"updated_At\": \"2022-10-28T16:00:21.029Z\",\n            \"tags\": \"drink, water\",\n            \"categoryName\": \"health\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "get signed in user's notes ex 2 (logged in as another user)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2454"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"996-D9zq+Y3UdEm4/Ar4I1AO6eT5UjQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:09:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"usernotes\": [\n        {\n            \"_id\": \"635bd6b8135f46300f87fb47\",\n            \"content\": \"buy new toothbrush\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"teeth, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bd747135f46300f87fb4b\",\n            \"content\": \"hire a maid to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdb58135f46300f87fb56\",\n            \"content\": \"hire someone to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"house\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdba0b5ed7684fb88d89a\",\n            \"content\": \"hire someone to clean my car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, cleaning\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdbfeb5ed7684fb88d89e\",\n            \"content\": \"Renew wheels asap\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, wheels\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdc54b5ed7684fb88d8a9\",\n            \"content\": \"Iron out my new shirt\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"shirt, Iron\",\n            \"categoryName\": \"clothes\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be879d474100daeb97eba\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:32:03.265Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"decoration\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8b1c252b5c463be0d1f\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:34:44.238Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"toy-cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8cbc0df5634e9b73ff9\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:35:41.324Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb2f8b1a0c051b47db74\",\n            \"content\": \"Buy a new bmw toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:45:37.368Z\",\n            \"tags\": \"bmw, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb521f68214030919865\",\n            \"content\": \"Buy a new JEEP toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:46:13.862Z\",\n            \"tags\": \"JEEP, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb79b44892473eba67b3\",\n            \"content\": \"I'm the content and am being updated!\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T15:28:38.704Z\",\n            \"tags\": \"tags, being, udpated, as, well\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "same GET method & URL, but without authentication",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-3iizDox7XE1+j+ctJHe5QNgPnns\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:10:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Not authenticated, no headers\"\n}"
+						},
+						{
+							"name": "Get User's Notes - user has no notes - 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-DKTJ31UNVG1hyICIwNJRlNBsOSc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:58:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"You don't have any notes yet, create some!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User Notes by Tags",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVncmVlbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzViZDY0ZDEzNWY0NjMwMGY4N2ZiM2UiLCJpYXQiOjE2NjY5NzQ2MTMsImV4cCI6MTY2NzAwMzQxM30.XqWyaUk8adMXsnrtPXk2dQgMWO9D-ddUlpYhz65FrGU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/API/tags/JEEP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"tags",
+								"JEEP"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Signed in User's Notes by Tags ex 1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/tags/xyz",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"tags",
+										"xyz"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-M/oReXlHnOuxjI2dF9za+SBwFrM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:31:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"No notes with the 'xyz' tag were found.\"\n}"
+						},
+						{
+							"name": "Get Signed in User's Notes by Tags ex 2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/tags/JEEP",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"tags",
+										"JEEP"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "260"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"104-HemWHNjm3YxzSCqf5hOfMbYI6IE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:33:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"1 note(s) with the 'JEEP' tag were found.\",\n    \"data\": [\n        {\n            \"_id\": \"635beb521f68214030919865\",\n            \"content\": \"Buy a new JEEP toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:46:13.862Z\",\n            \"tags\": \"JEEP, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get Signed in User's Notes by Tags ex 3",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/tags/car",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"tags",
+										"car"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1448"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a8-JAuEUbpC+3khd4+PZQk/xKG5ccA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:34:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"7 note(s) with the 'car' tag were found.\",\n    \"data\": [\n        {\n            \"_id\": \"635bdba0b5ed7684fb88d89a\",\n            \"content\": \"hire someone to clean my car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, cleaning\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdbfeb5ed7684fb88d89e\",\n            \"content\": \"Renew wheels asap\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, wheels\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be879d474100daeb97eba\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:32:03.265Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"decoration\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8b1c252b5c463be0d1f\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:34:44.238Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"toy-cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8cbc0df5634e9b73ff9\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:35:41.324Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb2f8b1a0c051b47db74\",\n            \"content\": \"Buy a new bmw toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:45:37.368Z\",\n            \"tags\": \"bmw, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb521f68214030919865\",\n            \"content\": \"Buy a new JEEP toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:46:13.862Z\",\n            \"tags\": \"JEEP, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "(no Bearer token) Get User Notes by Tags ex 4",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/tags/car",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"tags",
+										"car"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-3iizDox7XE1+j+ctJHe5QNgPnns\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:34:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Not authenticated, no headers\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User Notes by Sort",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYXJiZWxtYW5zb3VyQGdtYWlsLmNvbSIsInVzZXJJZCI6IjYzNWI4N2U4MDI1ZGE5Zjk5M2FkNjc2NSIsImlhdCI6MTY2Njk0Mjk1NSwiZXhwIjoxNjY2OTcxNzU1fQ.zN3BgSD1pblAakvU3XF-8rM1aPXdKlrBvhr82LNi5B8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/API/notes/-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"notes",
+								"-1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Signed in User's Notes by Sort ex 1 (ascending)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes/ascending",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes",
+										"ascending"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2454"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"996-D9zq+Y3UdEm4/Ar4I1AO6eT5UjQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:36:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"usernotes\": [\n        {\n            \"_id\": \"635bd6b8135f46300f87fb47\",\n            \"content\": \"buy new toothbrush\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"teeth, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bd747135f46300f87fb4b\",\n            \"content\": \"hire a maid to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdb58135f46300f87fb56\",\n            \"content\": \"hire someone to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"house\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdba0b5ed7684fb88d89a\",\n            \"content\": \"hire someone to clean my car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, cleaning\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdbfeb5ed7684fb88d89e\",\n            \"content\": \"Renew wheels asap\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, wheels\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdc54b5ed7684fb88d8a9\",\n            \"content\": \"Iron out my new shirt\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"shirt, Iron\",\n            \"categoryName\": \"clothes\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be879d474100daeb97eba\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:32:03.265Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"decoration\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8b1c252b5c463be0d1f\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:34:44.238Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"toy-cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8cbc0df5634e9b73ff9\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:35:41.324Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb2f8b1a0c051b47db74\",\n            \"content\": \"Buy a new bmw toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:45:37.368Z\",\n            \"tags\": \"bmw, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb521f68214030919865\",\n            \"content\": \"Buy a new JEEP toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:46:13.862Z\",\n            \"tags\": \"JEEP, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb79b44892473eba67b3\",\n            \"content\": \"I'm the content and am being updated!\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T15:28:38.704Z\",\n            \"tags\": \"tags, being, udpated, as, well\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get Signed in User's Notes by Sort ex 2 (descending)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes/descending",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes",
+										"descending"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2454"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"996-GFjECkMSsIWthoyk6zYU8w6LFhs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:36:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"usernotes\": [\n        {\n            \"_id\": \"635beb79b44892473eba67b3\",\n            \"content\": \"I'm the content and am being updated!\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T15:28:38.704Z\",\n            \"tags\": \"tags, being, udpated, as, well\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb521f68214030919865\",\n            \"content\": \"Buy a new JEEP toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:46:13.862Z\",\n            \"tags\": \"JEEP, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb2f8b1a0c051b47db74\",\n            \"content\": \"Buy a new bmw toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:45:37.368Z\",\n            \"tags\": \"bmw, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8cbc0df5634e9b73ff9\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:35:41.324Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8b1c252b5c463be0d1f\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:34:44.238Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"toy-cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be879d474100daeb97eba\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:32:03.265Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"decoration\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdba0b5ed7684fb88d89a\",\n            \"content\": \"hire someone to clean my car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, cleaning\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdbfeb5ed7684fb88d89e\",\n            \"content\": \"Renew wheels asap\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, wheels\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdc54b5ed7684fb88d8a9\",\n            \"content\": \"Iron out my new shirt\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"shirt, Iron\",\n            \"categoryName\": \"clothes\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bd6b8135f46300f87fb47\",\n            \"content\": \"buy new toothbrush\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"teeth, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bd747135f46300f87fb4b\",\n            \"content\": \"hire a maid to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdb58135f46300f87fb56\",\n            \"content\": \"hire someone to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"house\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get Signed in User's Notes by Sort ex 3 ( ascending - but using '1' )",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2454"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"996-D9zq+Y3UdEm4/Ar4I1AO6eT5UjQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:37:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"usernotes\": [\n        {\n            \"_id\": \"635bd6b8135f46300f87fb47\",\n            \"content\": \"buy new toothbrush\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"teeth, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bd747135f46300f87fb4b\",\n            \"content\": \"hire a maid to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdb58135f46300f87fb56\",\n            \"content\": \"hire someone to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"house\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdba0b5ed7684fb88d89a\",\n            \"content\": \"hire someone to clean my car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, cleaning\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdbfeb5ed7684fb88d89e\",\n            \"content\": \"Renew wheels asap\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, wheels\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdc54b5ed7684fb88d8a9\",\n            \"content\": \"Iron out my new shirt\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"shirt, Iron\",\n            \"categoryName\": \"clothes\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be879d474100daeb97eba\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:32:03.265Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"decoration\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8b1c252b5c463be0d1f\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:34:44.238Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"toy-cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8cbc0df5634e9b73ff9\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:35:41.324Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb2f8b1a0c051b47db74\",\n            \"content\": \"Buy a new bmw toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:45:37.368Z\",\n            \"tags\": \"bmw, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb521f68214030919865\",\n            \"content\": \"Buy a new JEEP toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:46:13.862Z\",\n            \"tags\": \"JEEP, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb79b44892473eba67b3\",\n            \"content\": \"I'm the content and am being updated!\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T15:28:38.704Z\",\n            \"tags\": \"tags, being, udpated, as, well\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get Signed in User's Notes by Sort ex 4 ( descending - but using '-1' )",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes/-1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes",
+										"-1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2454"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"996-GFjECkMSsIWthoyk6zYU8w6LFhs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:39:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"usernotes\": [\n        {\n            \"_id\": \"635beb79b44892473eba67b3\",\n            \"content\": \"I'm the content and am being updated!\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T15:28:38.704Z\",\n            \"tags\": \"tags, being, udpated, as, well\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb521f68214030919865\",\n            \"content\": \"Buy a new JEEP toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:46:13.862Z\",\n            \"tags\": \"JEEP, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635beb2f8b1a0c051b47db74\",\n            \"content\": \"Buy a new bmw toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:45:37.368Z\",\n            \"tags\": \"bmw, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8cbc0df5634e9b73ff9\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:35:41.324Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8b1c252b5c463be0d1f\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:34:44.238Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"toy-cars\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be879d474100daeb97eba\",\n            \"content\": \"Buy a new audi toy car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T14:32:03.265Z\",\n            \"tags\": \"audi, car\",\n            \"categoryName\": \"decoration\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdba0b5ed7684fb88d89a\",\n            \"content\": \"hire someone to clean my car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, cleaning\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdbfeb5ed7684fb88d89e\",\n            \"content\": \"Renew wheels asap\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, wheels\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdc54b5ed7684fb88d8a9\",\n            \"content\": \"Iron out my new shirt\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"shirt, Iron\",\n            \"categoryName\": \"clothes\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bd6b8135f46300f87fb47\",\n            \"content\": \"buy new toothbrush\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"teeth, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bd747135f46300f87fb4b\",\n            \"content\": \"hire a maid to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdb58135f46300f87fb56\",\n            \"content\": \"hire someone to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"house\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "( No bearer token ) Get User Notes by Sort",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes/-1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes",
+										"-1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-3iizDox7XE1+j+ctJHe5QNgPnns\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:40:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Not authenticated, no headers\"\n}"
+						},
+						{
+							"name": "No notes - Get User Notes by Sort",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes/-1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes",
+										"-1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-Z+8+21M2daaMSM+SUYQWO6UbcPk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 19:00:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"No notes were found, write a note!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Filter  Note by Categ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYXJiZWw1QGdtYWlsLmNvbSIsInVzZXJJZCI6IjYzNWFhOTc4MTVmYWFhMDUyYWU5Y2ZjZSIsImlhdCI6MTY2Njg4NjAxNywiZXhwIjoxNjY2OTE0ODE3fQ.sVUQ3iVoQUM67i5Tn6E0gKOXSDzNi6DKdzWEVRZ4Vvc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/API/category/postman",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"category",
+								"postman"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Filter ugreen@gmail.com's notes by category - example 2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/filtercategory/car",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"filtercategory",
+										"car"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "463"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1cf-h1DKhODQ4xOQr3U6IP4R1kDackU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:09:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"2 note(s) in the 'car' category were found.\",\n    \"data\": [\n        {\n            \"_id\": \"635bdba0b5ed7684fb88d89a\",\n            \"content\": \"hire someone to clean my car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, cleaning\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdbfeb5ed7684fb88d89e\",\n            \"content\": \"Renew wheels asap\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n            \"tags\": \"car, wheels\",\n            \"categoryName\": \"car\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Filter ugreen@gmail.com's notes by category - example 1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/filtercategory/ca",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"filtercategory",
+										"ca"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-knaiZldDqK5+55h+OKnHRAMb7rY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:09:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"No note(s) in the 'ca' category were found.\"\n}"
+						},
+						{
+							"name": "Filter ugreen@gmail.com's notes by category - example 3",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/filtercategory/hygene",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"filtercategory",
+										"hygene"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "480"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e0-wAnunkkPIZLJBbRLyQecLCn1LSg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:11:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"2 note(s) in the 'hygene' category were found.\",\n    \"data\": [\n        {\n            \"_id\": \"635bd6b8135f46300f87fb47\",\n            \"content\": \"buy new toothbrush\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"teeth, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bd747135f46300f87fb4b\",\n            \"content\": \"hire a maid to clean my house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n            \"tags\": \"house, cleaning\",\n            \"categoryName\": \"hygene\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Filter charbel_mansour@gmail.com's notes by category - example 1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/filtercategory/tech",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"filtercategory",
+										"tech"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-vmpLJhMAP3wF4pgalDGdjs2x7l0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:12:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"No note(s) in the 'tech' category were found.\"\n}"
+						},
+						{
+							"name": "Filter charbel_mansour@gmail.com's notes by category - example 2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/filtercategory/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"filtercategory",
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "273"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"111-wa9fOLh+eYq3ZNCC2XBkv8PBSp4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:14:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"1 note(s) in the 'health' category were found.\",\n    \"data\": [\n        {\n            \"_id\": \"635bfd6ba906b0953d3b947f\",\n            \"content\": \"Try to always drink water\",\n            \"creator\": \"635bf788ac83b530276e49df\",\n            \"updated_At\": \"2022-10-28T16:00:21.029Z\",\n            \"tags\": \"drink, water\",\n            \"categoryName\": \"health\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Filter charbel_mansour@gmail.com's notes by category - example 3",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/filtercategory/hea",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"filtercategory",
+										"hea"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"38-CfNOWKXZWWqOMCLYOegLLlVxreI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:16:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"No note(s) in the 'hea' category were found.\"\n}"
+						},
+						{
+							"name": "No bearer token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/filtercategory/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"filtercategory",
+										"health"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-3iizDox7XE1+j+ctJHe5QNgPnns\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:17:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Not authenticated, no headers\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Sign up",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Sign up - example 1",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"charbel_mansour@gmail.com\",\n    \"password\":\"Yi727727Yi727727\",\n    \"name\":\"charbel\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-tpEvjUkSzxuJITUk4ISummMNqgI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 15:38:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Signed up!\"\n}"
+						},
+						{
+							"name": "Sign up - example 2",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"charbel_mansour@gmail.com\",\n    \"password\":\"Yi727727Yi727727\",\n    \"name\":\"charbel\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"signup"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59-blmn1NRgLzXqzGMyV3VkL2ZD9gY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:05:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Conflict\": \"An existing Email address was found, please sign up using a different one.\"\n}"
+						},
+						{
+							"name": "Sign up - example 3",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"charbel\",\n    \"password\":\"Op9099\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "359"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"167-YuEe1h9r92TTZcByfYpiCLMAhoA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:06:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation FAILED, Password or Email format is incorrect\",\n    \"error\": [\n        {\n            \"value\": \"charbel\",\n            \"msg\": \"Please enter a valid email.\",\n            \"param\": \"email\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": \"Op9099\",\n            \"msg\": \"Password must have a minimum of 13 characters.\",\n            \"param\": \"password\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": \"\",\n            \"msg\": \"Please enter your name.\",\n            \"param\": \"name\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.environment.set(\"jwt_token\", \"response.token\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"full4@gmail.com\",\n    \"password\":\"Yi727727Yi727727\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/API/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login - example 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"charbel_mansour@gmail.com\",\n    \"password\":\"Yi727727Yi727727\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "272"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"110-NRQzojKMdVj8U4q3UCnPSDx5if8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:46:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYXJiZWxfbWFuc291ckBnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzViZjc4OGFjODNiNTMwMjc2ZTQ5ZGYiLCJpYXQiOjE2NjY5NzU1ODcsImV4cCI6MTY2NzAwNDM4N30.r7Wz1Ihsk78qjhcZMOFDBR24iCFUMGwY8lREz7uLLtM\",\n    \"userId\": \"635bf788ac83b530276e49df\"\n}"
+						},
+						{
+							"name": "Login - example 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"charbel_mansour@gmail.com\",\n    \"password\":\"incorrectpass\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b-rBBK+/OQDQRtA50XTt/0y6X6C8Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:00:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"Wrong password.\"\n}"
+						},
+						{
+							"name": "Login - example 3",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"dasfefsf@gmail.com\",\n    \"password\":\"randompassword\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-0SD3aAlIjjXuFvObYZ9h6B0WOP8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:01:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"A user with this email could not be found.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Post Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"bluemoon1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/API/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Post Category - ( as: ugreen@gmail.com ) - Validation example 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"e\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"categories"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "191"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bf-agIOFoyCwS5aWJ+QU0UvU35L64w\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:38:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation FAILED, enter at least 2 letters in the category name\",\n    \"error\": [\n        {\n            \"value\": \"e\",\n            \"msg\": \"Category name must include at least 1 character\",\n            \"param\": \"name\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Post Category - ( as: ugreen@gmail.com ) - Success example 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"space\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "198"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c6-XwKx3glhke5IM3S1wRRJ46o/eOo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:39:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": {\n        \"name\": \"space\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"_id\": \"635c13d8dc4f3bd885571154\",\n        \"__v\": 0\n    },\n    \"info\": {\n        \"dateCreated\": \"2022-10-28T17:39:37.174Z\",\n        \"status\": \"Category Created Successfully\"\n    }\n}"
+						},
+						{
+							"name": "Post Category - ( as: ugreen@gmail.com ) - Conflict example 3 - category's name must be unique for each user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"space\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"categories"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-tjZW2lPd3p8Mt2Q2zY367kgDIys\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:50:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Conflict\": \"A Category with that name already exists for you.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vY2F0ZWdvcmllc0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzVjMTkxZjRmZDE1NWQ5MGM5MGVkZmEiLCJpYXQiOjE2NjY5ODAxMzUsImV4cCI6MTY2NzAwODkzNX0.XOoiKCHBPYwNAWTAGx63zRw6zr9ZFyne52_lIBG6Mjs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/API/categ",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"categ"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Getting ugreen@gmail.com's categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/categ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"categ"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "982"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d6-89eUarSDTAvYNP7e3HVyiXGuOJk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:56:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"UserCategories\": [\n        {\n            \"_id\": \"635bd6b7135f46300f87fb43\",\n            \"name\": \"hygene\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdb57135f46300f87fb52\",\n            \"name\": \"house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdb9fb5ed7684fb88d896\",\n            \"name\": \"car\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdc54b5ed7684fb88d8a5\",\n            \"name\": \"clothes\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be879d474100daeb97eb6\",\n            \"name\": \"decoration\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8b1c252b5c463be0d1b\",\n            \"name\": \"toy-cars\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8cac0df5634e9b73ff5\",\n            \"name\": \"cars\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c1275dc4f3bd88557113d\",\n            \"name\": \"algebra\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c1350dc4f3bd88557114c\",\n            \"name\": \"science\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c13d8dc4f3bd885571154\",\n            \"name\": \"space\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Getting charbel_mansour@gmail.com's categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/categ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"categ"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "308"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"134-XlWxzEta/oL292LxM958cHfCtNE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 17:58:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"UserCategories\": [\n        {\n            \"_id\": \"635bfa7190a83c63f10f6732\",\n            \"name\": \"health\",\n            \"creator\": \"635bf788ac83b530276e49df\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c1113a35b4b621c01cb74\",\n            \"name\": \"algebra\",\n            \"creator\": \"635bf788ac83b530276e49df\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c163512044b839c12fbf4\",\n            \"name\": \"space\",\n            \"creator\": \"635bf788ac83b530276e49df\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Response when no categories are found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/categ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"categ"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-LNFyrvgdHK9p+MSKYa+8+wNBPlw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:04:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"You do not have any categories, try adding some!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Put Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYXJiZWw1QGdtYWlsLmNvbSIsInVzZXJJZCI6IjYzNWFhOTc4MTVmYWFhMDUyYWU5Y2ZjZSIsImlhdCI6MTY2Njg5MjQ5NywiZXhwIjoxNjY2OTIxMjk3fQ.elWVtY2ah95cYS-b1UNo9_YhaD0aN9c7MzzmoFn3eQA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"now eidted\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/API/category/635a8066ea98547c4849adc0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"category",
+								"635a8066ea98547c4849adc0"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Put Category - example 1 - Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"wasHealth\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/category/635bfa7190a83c63f10f6732",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"category",
+										"635bfa7190a83c63f10f6732"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "146"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"92-5tVf8TkNV14GmQ348zlRnKv0d0Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:17:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Updated category name!\",\n    \"category\": {\n        \"_id\": \"635bfa7190a83c63f10f6732\",\n        \"name\": \"wasHealth\",\n        \"creator\": \"635bf788ac83b530276e49df\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "Put Category - same category ID but changed user = unauthorized 401",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"wasHealth\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/category/635bfa7190a83c63f10f6732",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"category",
+										"635bfa7190a83c63f10f6732"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-ISPQm3Vn+ybJxICqzi+BRqoYP1Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:18:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"Unauthorized to edit category\"\n}"
+						},
+						{
+							"name": "Put Category - user can't update his category name to a name that already exists for one of his other categories",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"space\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/API/category/635c1350dc4f3bd88557114c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"category",
+										"635c1350dc4f3bd88557114c"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59-9vOXEXEkHjjC4Gvfyah74iOckdg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:35:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"A category with the name 'space' was found. Please update using another name.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGw1QGdtYWlsLmNvbSIsInVzZXJJZCI6IjYzNWEzMTY0NTNkMjVlYTUwYTNhNGM1YyIsImlhdCI6MTY2Njg1NjQ5MywiZXhwIjoxNjY2ODg1MjkzfQ._Kmphs3ZECcaKABsTX9sTNnLTRWhHPtT5AYY13nUXfk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/API/category/635a31f853d25ea50a3a4c63",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"category",
+								"635a31f853d25ea50a3a4c63"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Category - Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/category/635bdb9fb5ed7684fb88d896",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"category",
+										"635bdb9fb5ed7684fb88d896"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22-WJiNDUsXsfhx3W8HOcu2DbMXBXU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:37:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Category was deleted\"\n}"
+						},
+						{
+							"name": "Delete Category - 404 Not found response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/category/635bdb9fb5ed7684fb88d894",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"category",
+										"635bdb9fb5ed7684fb88d894"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d-mt7m0bVihWkS+HPcYxI30wWv72o\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:43:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"Could not find category to delete\"\n}"
+						},
+						{
+							"name": "Delete Category - Unauthorized response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/category/635bfa7190a83c63f10f6732",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"category",
+										"635bfa7190a83c63f10f6732"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d-DH7R07YZnUzBaZue258bgKFCuhg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:44:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"Not Authorized to delete category\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all Notes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/API/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"notes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all Notes - no bearer token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/notes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"notes"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-eD9X2ZwTlRAhDqusOd8fSMHSFHU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:47:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Not authenticated, no secret ..\"\n}"
+						},
+						{
+							"name": "Get all Notes - Success reponse",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/allnotes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"allnotes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3907"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f43-gpMZx5PCY7yzjnfnBAl1Ead11yU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 18:49:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"635bd6b8135f46300f87fb47\",\n        \"content\": \"buy new toothbrush\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n        \"tags\": \"teeth, cleaning\",\n        \"categoryName\": \"hygene\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635bd747135f46300f87fb4b\",\n        \"content\": \"hire a maid to clean my house\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n        \"tags\": \"house, cleaning\",\n        \"categoryName\": \"hygene\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635bdb58135f46300f87fb56\",\n        \"content\": \"hire someone to clean my house\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T13:15:02.607Z\",\n        \"tags\": \"house, cleaning\",\n        \"categoryName\": \"house\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635bdba0b5ed7684fb88d89a\",\n        \"content\": \"hire someone to clean my car\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n        \"tags\": \"car, cleaning\",\n        \"categoryName\": \"car\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635bdbfeb5ed7684fb88d89e\",\n        \"content\": \"Renew wheels asap\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n        \"tags\": \"car, wheels\",\n        \"categoryName\": \"car\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635bdc54b5ed7684fb88d8a9\",\n        \"content\": \"Iron out my new shirt\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T13:39:28.075Z\",\n        \"tags\": \"shirt, Iron\",\n        \"categoryName\": \"clothes\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635be879d474100daeb97eba\",\n        \"content\": \"Buy a new audi toy car\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T14:32:03.265Z\",\n        \"tags\": \"audi, car\",\n        \"categoryName\": \"decoration\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635be8b1c252b5c463be0d1f\",\n        \"content\": \"Buy a new audi toy car\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T14:34:44.238Z\",\n        \"tags\": \"audi, car\",\n        \"categoryName\": \"toy-cars\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635be8cbc0df5634e9b73ff9\",\n        \"content\": \"Buy a new audi toy car\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T14:35:41.324Z\",\n        \"tags\": \"audi, car\",\n        \"categoryName\": \"cars\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635beb2f8b1a0c051b47db74\",\n        \"content\": \"Buy a new bmw toy car\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T14:45:37.368Z\",\n        \"tags\": \"bmw, car\",\n        \"categoryName\": \"cars\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635beb521f68214030919865\",\n        \"content\": \"Buy a new JEEP toy car\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T14:46:13.862Z\",\n        \"tags\": \"JEEP, car\",\n        \"categoryName\": \"cars\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635beb79b44892473eba67b3\",\n        \"content\": \"I'm the content and am being updated!\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T15:28:38.704Z\",\n        \"tags\": \"tags, being, udpated, as, well\",\n        \"categoryName\": \"cars\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635bfd6ba906b0953d3b947f\",\n        \"content\": \"Try to always drink water\",\n        \"creator\": \"635bf788ac83b530276e49df\",\n        \"updated_At\": \"2022-10-28T16:00:21.029Z\",\n        \"tags\": \"drink, water\",\n        \"categoryName\": \"health\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635c1114a35b4b621c01cb78\",\n        \"content\": \"Study for algebra final\",\n        \"creator\": \"635bf788ac83b530276e49df\",\n        \"updated_At\": \"2022-10-28T17:22:27.631Z\",\n        \"tags\": \"math, algebra\",\n        \"categoryName\": \"algebra\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635c117fa35b4b621c01cb7c\",\n        \"content\": \"Do the algebra homework as well\",\n        \"creator\": \"635bf788ac83b530276e49df\",\n        \"updated_At\": \"2022-10-28T17:22:27.631Z\",\n        \"tags\": \"math, algebra\",\n        \"categoryName\": \"algebra\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635c1276dc4f3bd885571141\",\n        \"content\": \"I really need to study Algebra.\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T17:31:38.534Z\",\n        \"tags\": \"math, algebra\",\n        \"categoryName\": \"algebra\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635c12eddc4f3bd885571145\",\n        \"content\": \"I passed my Algebra test! studying works...\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T17:31:38.534Z\",\n        \"tags\": \"math, algebra\",\n        \"categoryName\": \"algebra\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635c1351dc4f3bd885571150\",\n        \"content\": \"Now I need to get my science grades up\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T17:31:38.534Z\",\n        \"categoryName\": \"science\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"635c146adc4f3bd885571156\",\n        \"content\": \"The category I belong to was created from the Category CRUD\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"updated_At\": \"2022-10-28T17:31:38.534Z\",\n        \"categoryName\": \"space\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get all Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGw0QGdtYWlsLmNvbSIsInVzZXJJZCI6IjYzNTk3NjZlYWYyN2Y3MzFlNzg5ZjA2MSIsImlhdCI6MTY2Njg4MDE1MCwiZXhwIjoxNjY2OTA4OTUwfQ.iiqG3xGXS7ommLw8--9CVZqB4DP1VRmAfRxNtHYpOSw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/API/allcategories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"API",
+								"allcategories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all Categories - Success response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/allcategories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"allcategories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1315"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"523-JHbtASPPVkpCMtHtgVkWiFg1DMQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 19:08:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Fetched all categories of all users.\",\n    \"categ\": [\n        {\n            \"_id\": \"635bd6b7135f46300f87fb43\",\n            \"name\": \"hygene\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdb57135f46300f87fb52\",\n            \"name\": \"house\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bdc54b5ed7684fb88d8a5\",\n            \"name\": \"clothes\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be879d474100daeb97eb6\",\n            \"name\": \"decoration\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8b1c252b5c463be0d1b\",\n            \"name\": \"toy-cars\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635be8cac0df5634e9b73ff5\",\n            \"name\": \"cars\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635bfa7190a83c63f10f6732\",\n            \"name\": \"wasHealth\",\n            \"creator\": \"635bf788ac83b530276e49df\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c1113a35b4b621c01cb74\",\n            \"name\": \"algebra\",\n            \"creator\": \"635bf788ac83b530276e49df\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c1275dc4f3bd88557113d\",\n            \"name\": \"algebra\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c1350dc4f3bd88557114c\",\n            \"name\": \"science\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c13d8dc4f3bd885571154\",\n            \"name\": \"space\",\n            \"creator\": \"635bd64d135f46300f87fb3e\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c163512044b839c12fbf4\",\n            \"name\": \"space\",\n            \"creator\": \"635bf788ac83b530276e49df\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635c277ff393dfe730b555ba\",\n            \"name\": \"space\",\n            \"creator\": \"635c26381e95af9d1ca7edb0\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get all Categories - no bearer token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/allcategories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"allcategories"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-3iizDox7XE1+j+ctJHe5QNgPnns\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 19:10:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Not authenticated, no headers\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get 1 Category",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Get 1 Category - Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/onecategory/635bd6b7135f46300f87fb43",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"onecategory",
+										"635bd6b7135f46300f87fb43"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"89-LGhUbZ5jHxlxXShPhGgX2ozMGfI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 19:09:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Success\": \"Category was found!\",\n    \"categ\": {\n        \"_id\": \"635bd6b7135f46300f87fb43\",\n        \"name\": \"hygene\",\n        \"creator\": \"635bd64d135f46300f87fb3e\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "Get 1 Category - no bearer token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/API/onecategory/635bd6b7135f46300f87fb43",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"API",
+										"onecategory",
+										"635bd6b7135f46300f87fb43"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-3iizDox7XE1+j+ctJHe5QNgPnns\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 19:10:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Not authenticated, no headers\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYXJiZWxfbWFuc291ckBnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzViZjc4OGFjODNiNTMwMjc2ZTQ5ZGYiLCJpYXQiOjE2NjY5NzE1NDIsImV4cCI6MTY2NzAwMDM0Mn0.dXZpW5eLntmiqH60KM8r9WO59KgNWf_5Gbh47eg8oWA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
