@@ -139,7 +139,7 @@ exports.postAddNote = (req, res) => {
                 return user.save();
               });
             res.status(201).json({
-              Success: "note saved with new category",
+              Success: "Note created and saved into a new category",
             });
           }) //new
           .catch((err) => {
