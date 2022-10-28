@@ -32,4 +32,10 @@ const userSchema = mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+var query = User.find();
+query.count(function (err, count) {
+  if (err) console.log(err);
+  else console.log("All Users:", count);
+});
+
 module.exports = User;
