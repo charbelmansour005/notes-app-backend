@@ -191,12 +191,12 @@ exports.putOneNote = (req, res) => {
     .then((note) => {
       if (!note) {
         return res.status(404).json({
-          Error: "could not find note to update",
+          Error: "Could not update, note was not found.",
         });
       }
       if (note.creator.toString() !== req.userId) {
         return res.status(401).json({ Error: "Not authorized to update note" });
-      }
+      } // (a 404 not found would be a better choice of response)
       note.content = content;
       note.tags = tags;
       note.updated_At = updated_At;
@@ -210,9 +210,6 @@ exports.putOneNote = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(404).json({
-        Error: "There was a problem updating your note.",
-      });
     });
 };
 
@@ -229,7 +226,7 @@ exports.deleteOneNote = (req, res) => {
     .then((note) => {
       if (!note) {
         res.status(404).json({
-          Error: "could not find note to delete",
+          Error: "Could not delete, note was not found",
         });
       }
       if (note.creator.toString() !== req.userId) {
@@ -251,7 +248,7 @@ exports.deleteOneNote = (req, res) => {
     .then((result) => {
       console.log(result);
       res.status(200).json({
-        info: "post was deleted.",
+        Success: "Note was deleted.",
       });
     })
     .catch((error) => {
