@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "charbelmansour005@gmail.com", //must be a gmail account
+    user: "charbelmansour005@gmail.com", //must be a gmail account ( since the service is gmail )
     pass: "encxvodkkuczlxdv", //must use app password generated from google
   },
 });
@@ -53,10 +53,12 @@ exports.postLogin = (req, res) => {
         .json({ Error: "A user with this email could not be found." });
     });
 };
+
 /**
  * User signs up, a welcome message gets send to him
  * email must be unique, password must have 13 characters minimum (auth_validation.js)
- * password gets hashed on database
+ * password gets hashed and then stored on mongoDB database. The 12th level of bcrypt
+ * hashing is considered to be very secure
  */
 exports.putSignup = (req, res) => {
   const errors = validationResult(req);
@@ -88,16 +90,21 @@ exports.putSignup = (req, res) => {
       });
     })
     .then(() => {
-      res.json({
+      res.status(200).json({
         Success: "Signed up!",
       });
       return transporter.sendMail({
         to: email,
         from: "employees@node-complete.com",
-        html: "<h1>You Signed up!</h1>",
+        html: "<h1>Welcome! Thank you for choosing us.</h1>",
       });
     })
     .catch((err) => {
       console.log(err);
+      res
+        .status(404)
+        .json({
+          Error: "There was a problem signing you up, please try again.",
+        });
     });
 };
