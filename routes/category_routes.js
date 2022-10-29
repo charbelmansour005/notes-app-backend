@@ -16,7 +16,7 @@ router.post(
 router.put("/category/:id", isAuth, categoryController.putCategory);
 
 // Extra routes:
-// router.get("/onecategory/:id", isAuth, categoryController.getOneCategory);
-// router.get("/allcategories", isAuth, categoryController.getAllCategories);
+router.get("/onecategory/:id", isAuth, categoryController.getOneCategory);
+router.get("/allcategories", isAuth, categoryController.getAllCategories);
 
 module.exports = router;

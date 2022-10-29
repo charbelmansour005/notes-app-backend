@@ -18,6 +18,9 @@ exports.getCategsOfUser = (req, res) => {
       }
     })
     .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
       console.log(err);
     });
 };
@@ -57,8 +60,11 @@ exports.deleteUserCategory = (req, res) => {
         Success: "Category was deleted",
       });
     })
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      console.log(err);
     });
 };
 
@@ -83,28 +89,35 @@ exports.postAddCategory = (req, res) => {
   Category.find({
     name: req.body.name,
     creator: Id,
-  }).then((categories) => {
-    if (!categories.length) {
-      category
-        .save()
-        .then((category) => {
-          res.status(201).json({
-            category,
-            info: {
-              dateCreated: new Date().toISOString(),
-              status: "Category Created Successfully",
-            },
+  })
+    .then((categories) => {
+      if (!categories.length) {
+        category
+          .save()
+          .then((category) => {
+            res.status(201).json({
+              category,
+              info: {
+                dateCreated: new Date().toISOString(),
+                status: "Category Created Successfully",
+              },
+            });
+          })
+          .catch((err) => {
+            console.log(err);
           });
-        })
-        .catch((err) => {
-          console.log(err);
+      } else {
+        res.status(400).json({
+          Conflict: "A Category with that name already exists for you.",
         });
-    } else {
-      res.status(400).json({
-        Conflict: "A Category with that name already exists for you.",
-      });
-    }
-  });
+      }
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      console.log(err);
+    });
 };
 
 /**
@@ -114,43 +127,51 @@ exports.postAddCategory = (req, res) => {
 exports.putCategory = (req, res) => {
   const _id = req.params.id;
   const name = req.body.name;
-  Category.findById(_id).then((category) => {
-    if (!category) {
-      return res.status(404).json({
-        Error: " Could not find category to update ",
-      });
-    }
-    if (category.creator.toString() !== req.userId) {
-      return res.status(401).json({ Error: "Unauthorized to edit category" });
-    }
-    const Id = req.userId;
-    Category.find({
-      name: req.body.name,
-      creator: Id,
-    })
-      .then((categories) => {
-        if (!categories.length) {
-          category.name = name;
-          return category
-            .save()
-            .then((result) => {
-              res
-                .status(200)
-                .json({ Success: "Updated category name!", category: result });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          res.json({
-            Error: `A category with the name '${req.body.name}' was found. Please update using another name.`,
-          });
-        }
+  Category.findById(_id)
+    .then((category) => {
+      if (!category) {
+        return res.status(404).json({
+          Error: " Could not find category to update ",
+        });
+      }
+      if (category.creator.toString() !== req.userId) {
+        return res.status(401).json({ Error: "Unauthorized to edit category" });
+      }
+      const Id = req.userId;
+      Category.find({
+        name: req.body.name,
+        creator: Id,
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+        .then((categories) => {
+          if (!categories.length) {
+            category.name = name;
+            return category
+              .save()
+              .then((result) => {
+                res.status(200).json({
+                  Success: "Updated category name!",
+                  category: result,
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            res.json({
+              Error: `A category with the name '${req.body.name}' was found. Please update using another name.`,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      console.log(err);
+    });
 };
 
 // - - - - - - - - - - - - - - - - - - Extra controllers - - - - - - - - - - - - - - - - - -
@@ -164,7 +185,7 @@ exports.getOneCategory = (req, res) => {
     .then((categ) => {
       res.status(200).json({ Success: "Category was found!", categ });
     })
-    .catch(() => {
+    .catch((err) => {
       res.status(404).json({ Error: "Could not find the category." });
     });
 };
@@ -186,6 +207,9 @@ exports.getAllCategories = (req, res) => {
       }
     })
     .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
       console.log(err);
     });
 };

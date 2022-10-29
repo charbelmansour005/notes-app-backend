@@ -47,8 +47,8 @@ exports.postLogin = (req, res) => {
       );
       res.status(200).json({ token: token, userId: loadedUser._id.toString() });
     })
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
       res
         .status(404)
         .json({ Error: "A user with this email could not be found." });
@@ -101,6 +101,9 @@ exports.putSignup = (req, res) => {
       });
     })
     .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
       console.log(err);
     });
 };

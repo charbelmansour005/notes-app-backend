@@ -9,18 +9,25 @@ exports.filterbyCategory = (req, res) => {
   const id = req.userId;
   Note.find({
     $and: [{ creator: id }, { categoryName: req.params.key }],
-  }).then((data) => {
-    if (data.length === 0) {
-      res.status(404).json({
-        Error: `No note(s) in the '${req.params.key}' category were found.`,
-      });
-    } else {
-      res.status(200).json({
-        Success: `${data.length} note(s) in the '${req.params.key}' category were found.`,
-        data,
-      });
-    }
-  });
+  })
+    .then((data) => {
+      if (data.length === 0) {
+        res.status(404).json({
+          Error: `No note(s) in the '${req.params.key}' category were found.`,
+        });
+      } else {
+        res.status(200).json({
+          Success: `${data.length} note(s) in the '${req.params.key}' category were found.`,
+          data,
+        });
+      }
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      console.log(err);
+    });
 };
 
 /**
@@ -40,6 +47,9 @@ exports.getNotesOfUser = (req, res) => {
       }
     })
     .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
       console.log(err);
     });
 };
@@ -51,18 +61,25 @@ exports.searchUserTags = (req, res) => {
   const id = req.userId;
   Note.find({
     $and: [{ creator: id }, { $or: [{ tags: { $regex: req.params.key } }] }],
-  }).then((data) => {
-    if (data.length === 0) {
-      res.status(404).json({
-        Error: `No notes with the '${req.params.key}' tag were found.`,
-      });
-    } else {
-      res.status(200).json({
-        Success: `${data.length} note(s) with the '${req.params.key}' tag were found.`,
-        data,
-      });
-    }
-  });
+  })
+    .then((data) => {
+      if (data.length === 0) {
+        res.status(404).json({
+          Error: `No notes with the '${req.params.key}' tag were found.`,
+        });
+      } else {
+        res.status(200).json({
+          Success: `${data.length} note(s) with the '${req.params.key}' tag were found.`,
+          data,
+        });
+      }
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      console.log(err);
+    });
 };
 
 /**
@@ -82,6 +99,9 @@ exports.getUserNotesLatest = (req, res) => {
       }
     })
     .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
       console.log(err);
     });
 };
@@ -168,10 +188,11 @@ exports.postAddNote = (req, res) => {
         });
       }
     })
-    .catch(() => {
-      res.status(404).json({
-        Error: "There was an error processing your request.",
-      });
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      console.log(err);
     });
 };
 
@@ -206,6 +227,9 @@ exports.putOneNote = (req, res) => {
       });
     })
     .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
       console.log(err);
     });
 };
@@ -247,7 +271,10 @@ exports.deleteOneNote = (req, res) => {
       });
     })
     .catch((error) => {
-      console.log(error);
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      console.log(err);
     });
 };
 
@@ -265,11 +292,11 @@ exports.getOneNote = (req, res, next) => {
       }
       res.status(200).json({ info: "Found note", note: note });
     })
-    .catch((error) => {
-      if (!error.statusCode) {
-        error.statusCode = 500;
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
       }
-      next(error);
+      console.log(err);
     });
 };
 // Get all notes
@@ -284,6 +311,9 @@ exports.getNotes = (req, res, next) => {
       res.status(200).json(note);
     })
     .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
       console.log(err);
     });
 };
@@ -302,6 +332,9 @@ exports.getAllNotesBySort = (req, res, next) => {
       }
     })
     .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
       console.log(err);
     });
 };

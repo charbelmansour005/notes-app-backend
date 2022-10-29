@@ -14,6 +14,6 @@ router.delete("/note/:id", isAuth, notesController.deleteOneNote);
 module.exports = router;
 
 // Extra routes:
-// router.get("/allnotes", isAuth, notesController.getNotes); // Get All Notes
-// router.get("/notes/:sort", isAuth, notesController.getAllNotesBySort); //  Get All Notes - custom sort
-// router.get("/note/:id", isAuth, notesController.getOneNote); // Get 1 note by ID
+router.get("/allnotes", isAuth, notesController.getNotes); // Get All Notes
+router.get("/notes/:sort", isAuth, notesController.getAllNotesBySort); //  Get All Notes - custom sort
+router.get("/note/:id", isAuth, notesController.getOneNote); // Get 1 note by ID
