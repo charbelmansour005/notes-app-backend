@@ -121,13 +121,15 @@ exports.postAddNote = (req, res) => {
     tags: tags,
     categoryName: categoryName,
   });
+  //look for inserted Category
   Category.find({
     name: categoryName,
     creator: creator,
-  })
+  }) //if not found
     .then((categories) => {
       if (!categories.length) {
         const newCatergory = new Category({
+          //create category with it's name
           name: categoryName,
           creator: creator,
         });
@@ -137,16 +139,18 @@ exports.postAddNote = (req, res) => {
             return User.findById(req.userId);
           })
           .then((user) => {
+            //push new category to the user's categories
             creator = user;
             user.categories.push(newCatergory._id);
             return user.save();
           })
           .then(() => {
             const note = new Note({
+              //then create the note
               content: content,
               creator: creator,
               tags: tags,
-              categoryName: req.body.categoryName,
+              categoryName: req.body.categoryName, //with the newly created category
             });
             note
               .save()
@@ -154,6 +158,7 @@ exports.postAddNote = (req, res) => {
                 return User.findById(req.userId);
               })
               .then((user) => {
+                //and push the note into the user's notes
                 creator = user;
                 user.notes.push(note._id);
                 return user.save();
@@ -170,13 +175,13 @@ exports.postAddNote = (req, res) => {
           });
         return console.log("done, note saved with new category");
       } else {
-        note
-          .save()
+        note //if the category already exists for the user
+          .save() //create the note
           .then(() => {
             return User.findById(req.userId);
           })
           .then((user) => {
-            creator = user;
+            creator = user; //and make the relation
             user.notes.push(note._id);
             return user.save();
           });
