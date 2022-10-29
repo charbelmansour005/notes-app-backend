@@ -7,8 +7,8 @@ const jwt = require("jsonwebtoken");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "charbelmansour005@gmail.com", //must be a gmail account ( since the service is gmail )
-    pass: "encxvodkkuczlxdv", //must use app password generated from google
+    user: "replace w/ your gmail", //must be a gmail account ( service = gmail )
+    pass: "replace w/ your google generated app pass", //must use app password generated from google
   },
 });
 
@@ -16,6 +16,7 @@ var transporter = nodemailer.createTransport({
  * Logging the user in
  * using mongoose findOne( ) to find an email that matches the input,
  * then using bcrypt to compare the entered password with the one that exists on the database
+ * because bcrypt knows to decrypt both passwords and compare them.
  * then sending responses accordingly. The JWT token will last for 8 hours. The secret would be
  * changed to become 32 characters long in a production version of the app
  */
@@ -23,7 +24,7 @@ exports.postLogin = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   let loadedUser;
-  User.findOne({ email: email })
+  User.findOne({ email: email }) // searching database for matching email
     .then((user) => {
       if (!user) {
         const error = new Error("");
@@ -41,7 +42,7 @@ exports.postLogin = (req, res) => {
           email: loadedUser.email,
           userId: loadedUser._id.toString(),
         },
-        "somesupersecretsecret",
+        process.env.SECRET,
         { expiresIn: "8h" }
       );
       res.status(200).json({ token: token, userId: loadedUser._id.toString() });
@@ -57,7 +58,7 @@ exports.postLogin = (req, res) => {
 /**
  * User signs up, a welcome message gets send to him
  * email must be unique, password must have 13 characters minimum (auth_validation.js)
- * password gets hashed and then stored on mongoDB database. The 12th level of bcrypt
+ * password gets hashed and then stored on mongoDB database. level 12 of bcrypt
  * hashing is considered to be very secure
  */
 exports.putSignup = (req, res) => {
@@ -71,7 +72,7 @@ exports.putSignup = (req, res) => {
   const email = req.body.email;
   const name = req.body.name;
   const password = req.body.password;
-  User.findOne({ email: email })
+  User.findOne({ email: email }) // new user's email must be unique
     .then((userDoc) => {
       if (userDoc) {
         res.status(409).json({

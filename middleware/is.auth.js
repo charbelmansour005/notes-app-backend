@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
   let decodedToken;
 
   try {
-    decodedToken = jwt.verify(token, "somesupersecretsecret");
+    decodedToken = jwt.verify(token, process.env.SECRET); // secret prefered to be 32 characters
   } catch (err) {
     console.log(err);
     return res.status(500).json({

@@ -15,8 +15,8 @@ router.post(
 );
 router.put("/category/:id", isAuth, categoryController.putCategory);
 
-// Superuser
-router.get("/onecategory/:id", isAuth, categoryController.getOneCategory);
-router.get("/allcategories", isAuth, categoryController.getAllCategories);
+// Extra routes:
+// router.get("/onecategory/:id", isAuth, categoryController.getOneCategory);
+// router.get("/allcategories", isAuth, categoryController.getAllCategories);
 
 module.exports = router;

@@ -162,11 +162,7 @@ exports.putCategory = (req, res) => {
   });
 };
 
-/**
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * - - - - - - - - - - - - - - - - - - Superuser actions start - - - - - - - - - - - - - - - - -
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- */
+// - - - - - - - - - - - - - - - - - - Extra controllers - - - - - - - - - - - - - - - - - -
 
 /**
  * Gets any category regardless of who is signed in

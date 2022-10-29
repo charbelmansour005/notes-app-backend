@@ -1,11 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-var PORT = process.env.PORT || 8080;
-const MONGODB_URI =
-  "mongodb+srv://charbelmansour005:ZJJ_bEQbD5ZJ52N@cluster0.0dky3d4.mongodb.net/?retryWrites=true&w=majority";
+var PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB; //replace with your database
 const app = express();
 const bodyParser = require("body-parser");
-require("dotenv").config();
 const morgan = require("morgan");
 const cors = require("cors");
 

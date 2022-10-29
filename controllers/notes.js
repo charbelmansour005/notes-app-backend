@@ -268,7 +268,7 @@ exports.deleteOneNote = (req, res) => {
     });
 };
 
-// - - - - - - - - - - - - - - - - - - Superuser actions - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - Extra controllers - - - - - - - - - - - - - - - - - -
 
 // Get a single note of any user by it's ObjectId
 exports.getOneNote = (req, res, next) => {
