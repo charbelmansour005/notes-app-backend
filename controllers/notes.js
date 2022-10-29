@@ -218,7 +218,11 @@ exports.putOneNote = (req, res) => {
       note.content = content;
       note.tags = tags;
       note.updated_At = updated_At;
-      return note.save();
+      if (!content) {
+        res.status(404).json({ Error: "Do not leave the content field empty" });
+      } else {
+        return note.save();
+      }
     })
     .then((result) => {
       res.status(200).json({
