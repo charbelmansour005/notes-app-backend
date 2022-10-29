@@ -1,6 +1,6 @@
-const Note = require("../model/note");
-const User = require("../model/user");
-const Category = require("../model/category");
+const Note = require("../models/note");
+const User = require("../models/user");
+const Category = require("../models/category");
 
 /**
  * User can filter his Notes by a specific category he enters in the URL

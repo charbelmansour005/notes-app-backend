@@ -1,5 +1,5 @@
-const Category = require("../model/category");
-const User = require("../model/user");
+const Category = require("../models/category");
+const User = require("../models/user");
 const { validationResult } = require("express-validator");
 /**
  * fetches the categories created by the signed in user

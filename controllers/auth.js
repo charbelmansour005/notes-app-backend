@@ -1,4 +1,4 @@
-const User = require("../model/user");
+const User = require("../models/user");
 var nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
@@ -7,8 +7,8 @@ const jwt = require("jsonwebtoken");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "your gmail", //must be a gmail account ( since the service is gmail )
-    pass: "ur google generated app pass", //must use app password generated from google
+    user: "charbelmansour005@gmail.com", //must be a gmail account ( since the service is gmail )
+    pass: "encxvodkkuczlxdv", //must use app password generated from google
   },
 });
 

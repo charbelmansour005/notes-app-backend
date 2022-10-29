@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 var PORT = process.env.PORT || 8080;
-const MONGODB_URI = "your link here";
+const MONGODB_URI =
+  "mongodb+srv://charbelmansour005:ZJJ_bEQbD5ZJ52N@cluster0.0dky3d4.mongodb.net/?retryWrites=true&w=majority";
 const app = express();
 const bodyParser = require("body-parser");
 require("dotenv").config();
