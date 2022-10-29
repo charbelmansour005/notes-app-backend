@@ -274,7 +274,7 @@ exports.deleteOneNote = (req, res) => {
         Success: "Note was deleted.",
       });
     })
-    .catch((error) => {
+    .catch((err) => {
       if (!err.statusCode) {
         err.statusCode = 500;
       }

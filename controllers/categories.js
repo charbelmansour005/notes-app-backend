@@ -127,51 +127,57 @@ exports.postAddCategory = (req, res) => {
 exports.putCategory = (req, res) => {
   const _id = req.params.id;
   const name = req.body.name;
-  Category.findById(_id)
-    .then((category) => {
-      if (!category) {
-        return res.status(404).json({
-          Error: " Could not find category to update ",
-        });
-      }
-      if (category.creator.toString() !== req.userId) {
-        return res.status(401).json({ Error: "Unauthorized to edit category" });
-      }
-      const Id = req.userId;
-      Category.find({
-        name: req.body.name,
-        creator: Id,
-      })
-        .then((categories) => {
-          if (!categories.length) {
-            category.name = name;
-            return category
-              .save()
-              .then((result) => {
-                res.status(200).json({
-                  Success: "Updated category name!",
-                  category: result,
-                });
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          } else {
-            res.json({
-              Error: `A category with the name '${req.body.name}' was found. Please update using another name.`,
-            });
-          }
+  if (!name) {
+    res.status(404).json({ Error: "Do not leave the category name empty" });
+  } else {
+    Category.findById(_id)
+      .then((category) => {
+        if (!category) {
+          return res.status(404).json({
+            Error: " Could not find category to update ",
+          });
+        }
+        if (category.creator.toString() !== req.userId) {
+          return res
+            .status(401)
+            .json({ Error: "Unauthorized to edit category" });
+        }
+        const Id = req.userId;
+        Category.find({
+          name: req.body.name,
+          creator: Id,
         })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
+          .then((categories) => {
+            if (!categories.length) {
+              category.name = name;
+              return category
+                .save()
+                .then((result) => {
+                  res.status(200).json({
+                    Success: "Updated category name!",
+                    category: result,
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            } else {
+              res.json({
+                Error: `A category with the name '${req.body.name}' was found. Please update using another name.`,
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        if (!err.statusCode) {
+          err.statusCode = 500;
+        }
+        console.log(err);
+      });
+  }
 };
 
 // - - - - - - - - - - - - - - - - - - Extra controllers - - - - - - - - - - - - - - - - - -
