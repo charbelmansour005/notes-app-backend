@@ -24,7 +24,7 @@ const noteSchema = mongoose.Schema({
 const Note = mongoose.model("Note", noteSchema);
 
 var query = Note.find();
-query.count(function (err, count) {
+query.countDocuments(function (err, count) {
   if (err) console.log(err);
   else console.log("All Notes:", count);
 });

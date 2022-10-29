@@ -15,7 +15,7 @@ const categorySchema = mongoose.Schema({
 const Category = mongoose.model("Category", categorySchema);
 
 var query = Category.find();
-query.count(function (err, count) {
+query.countDocuments(function (err, count) {
   if (err) console.log(err);
   else console.log("All Categories:", count);
 });
