@@ -34,7 +34,6 @@ exports.getNotesOfUser = (req, res) => {
   const id = req.userId;
   Note.find({ creator: id })
     .then((notes) => {
-      console.log(notes);
       if (!notes.length) {
         return res
           .status(404)
@@ -163,7 +162,6 @@ exports.postAddNote = (req, res) => {
         return console.log("done, note saved with new category");
       } else {
         //exists -> create note with inputted category from above
-        console.log(categories[0].name);
         note
           .save()
           .then(() => {
@@ -182,8 +180,7 @@ exports.postAddNote = (req, res) => {
         });
       }
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(() => {
       res.status(404).json({
         Error: "There was an error processing your request.",
       });

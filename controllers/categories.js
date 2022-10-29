@@ -52,7 +52,6 @@ exports.deleteUserCategory = (req, res) => {
     })
     .then((user) => {
       creator = user;
-      console.log(user.notes);
       user.categories.pull(_id);
       return user.save();
     })
@@ -174,8 +173,7 @@ exports.getOneCategory = (req, res) => {
     .then((categ) => {
       res.status(200).json({ Success: "Category was found!", categ });
     })
-    .catch((err) => {
-      console.log("Could not find category", err);
+    .catch(() => {
       res.status(404).json({ Error: "Could not find the category." });
     });
 };
