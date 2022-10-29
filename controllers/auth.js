@@ -14,11 +14,7 @@ var transporter = nodemailer.createTransport({
 
 /**
  * Logging the user in
- * using mongoose findOne( ) to find an email that matches the input,
- * then using bcrypt to compare the entered password with the one that exists on the database
- * because bcrypt knows to decrypt both passwords and compare them.
- * then sending responses accordingly. The JWT token will last for 8 hours. The secret would be
- * changed to become 32 characters long in a production version of the app
+ * using mongoose findOne( ) to find an email that matches the input
  */
 exports.postLogin = (req, res) => {
   const email = req.body.email;
@@ -56,10 +52,7 @@ exports.postLogin = (req, res) => {
 };
 
 /**
- * User signs up, a welcome message gets send to him
- * email must be unique, password must have 13 characters minimum (auth_validation.js)
- * password gets hashed and then stored on mongoDB database. level 12 of bcrypt
- * hashing is considered to be very secure
+ * User signs up and a welcome message gets send to him
  */
 exports.putSignup = (req, res) => {
   const errors = validationResult(req);

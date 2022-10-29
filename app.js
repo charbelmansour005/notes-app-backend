@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 var PORT = process.env.PORT || 3000;
-const MONGODB_URI = process.env.MONGODB; //replace with your database
+const MONGODB_URI = process.env.MONGODB; //replace with your ATLAS database link
 const app = express();
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
