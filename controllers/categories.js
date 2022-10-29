@@ -4,7 +4,6 @@ const { validationResult } = require("express-validator");
 /**
  * fetches the categories created by the signed in user
  * @param -> req.userId from is.auth.js middleware
- * @route "/categ"
  */
 exports.getCategsOfUser = (req, res) => {
   const id = req.userId;
@@ -25,10 +24,7 @@ exports.getCategsOfUser = (req, res) => {
 
 /**
  * Signed in user may only delete one of his own categories
- * the deleted category also gets deleted from the Category collection
- * and gets pulled out from the user's categories field in the User collection
  * @param -> ObjectId of the target Category to be deleted
- * @route "/category/:id"
  */
 exports.deleteUserCategory = (req, res) => {
   let creator = req.userId;
@@ -69,7 +65,6 @@ exports.deleteUserCategory = (req, res) => {
 /**
  * When a signed in user creates a category, it automatically takes his ID.
  * @param -> req.userId from is.auth.js middleware
- * @route "/categories"
  */
 exports.postAddCategory = (req, res) => {
   const errors = validationResult(req);
@@ -115,8 +110,6 @@ exports.postAddCategory = (req, res) => {
 /**
  * Allows user to edit only his categories
  * @param -> req.userId from is.auth.js middleware
- * @details -> this function compares signed in userId with the userId attatched to the category in question
- * @route "/category/:id"
  */
 exports.putCategory = (req, res) => {
   const _id = req.params.id;
@@ -128,7 +121,6 @@ exports.putCategory = (req, res) => {
       });
     }
     if (category.creator.toString() !== req.userId) {
-      // Javascript doesn't know what a Mongoose ObjectId is
       return res.status(401).json({ Error: "Unauthorized to edit category" });
     }
     const Id = req.userId;
@@ -165,7 +157,6 @@ exports.putCategory = (req, res) => {
 
 /**
  * Gets any category regardless of who is signed in
- * @route "/onecategory/:id"
  */
 exports.getOneCategory = (req, res) => {
   const _id = req.params.id;
@@ -180,7 +171,6 @@ exports.getOneCategory = (req, res) => {
 
 /**
  * Gets all categories of all users regardless of who is signed in
- * @route "/allcategories"
  */
 exports.getAllCategories = (req, res) => {
   Category.find()

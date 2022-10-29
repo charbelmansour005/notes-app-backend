@@ -26,10 +26,10 @@ const apiRoutes_category = require("./routes/category_routes");
 app.use("/API", apiRoutes_notes);
 app.use("/API", apiRoutes_category);
 app.use("/API", apiRoutes_auth);
+
 app.use((req, res) => {
   res.status(404).json({ Error: "PAGE NOT FOUND" });
 });
-
 app.use((error, req, res, next) => {
   console.log(error);
   const status = error.statusCode || 500;

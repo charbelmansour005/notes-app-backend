@@ -4,8 +4,6 @@ const Category = require("../models/category");
 
 /**
  * User can filter his Notes by a specific category he enters in the URL
- * The whole category name will be read and not only parts of it, so the
- * category name being filtered must exist as a whole
  */
 exports.filterbyCategory = (req, res) => {
   const id = req.userId;
@@ -13,7 +11,6 @@ exports.filterbyCategory = (req, res) => {
     $and: [{ creator: id }, { categoryName: req.params.key }],
   }).then((data) => {
     if (data.length === 0) {
-      // same as !data.length
       res.status(404).json({
         Error: `No note(s) in the '${req.params.key}' category were found.`,
       });
@@ -91,14 +88,6 @@ exports.getUserNotesLatest = (req, res) => {
 
 /**
  * Creating a note for the signed in user
- * User must fill out the 'categoryName' and the 'content' fields, whereas tags are optional.
- * Upon creating a note with a previously existing category, a new category will NOT be created,
- * only the note will be created and added to the signed in user under his 'notes' array,
- * as well as to the Notes collection, where it will also include the creator's ObjectId
- *
- * Else, when creating a note with a * new * category, the latter will be created as well,
- * and both the note and the new category will be added to the User doc respectively under his 'notes'
- * and 'categories' arrays, as well as to their own collections - with the user's ObjectId
  * @param - userId auto inserted just by being signed in
  */
 exports.postAddNote = (req, res) => {
@@ -152,7 +141,7 @@ exports.postAddNote = (req, res) => {
             res.status(201).json({
               Success: `New Note and new '${req.body.categoryName}' Category was created for the note as well.`,
             });
-          }) //new
+          })
           .catch((err) => {
             console.log(err);
             res.status(404).json({
@@ -161,7 +150,6 @@ exports.postAddNote = (req, res) => {
           });
         return console.log("done, note saved with new category");
       } else {
-        //exists -> create note with inputted category from above
         note
           .save()
           .then(() => {
@@ -205,7 +193,7 @@ exports.putOneNote = (req, res) => {
       }
       if (note.creator.toString() !== req.userId) {
         return res.status(401).json({ Error: "Not authorized to update note" });
-      } // (a 404 would be a better choice of response in production mode )
+      }
       note.content = content;
       note.tags = tags;
       note.updated_At = updated_At;
@@ -224,8 +212,6 @@ exports.putOneNote = (req, res) => {
 
 /**
  * Signed in user may only delete one of his notes
- * The note gets deleted from the user's collection from under his 'notes' Array
- * as well as from the notes collection
  * @param - ObjectId of the note to be deleted
  */
 exports.deleteOneNote = (req, res) => {
