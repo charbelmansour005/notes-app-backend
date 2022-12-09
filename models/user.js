@@ -14,20 +14,20 @@ const userSchema = mongoose.Schema({
   },
   name: {
     type: String,
-    required: [true, "Please enter your name."], //was true
+    required: [true, "Please enter your name."],
   },
-  notes: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Note",
-    },
-  ],
-  categories: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
-    },
-  ],
+  // notes: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Note",
+  //   },
+  // ],
+  // categories: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Category",
+  //   },
+  // ],
 });
 
 const User = mongoose.model("User", userSchema);

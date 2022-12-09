@@ -53,7 +53,7 @@ exports.putSignup = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({
-      message: "Validation FAILED, Password or Email format is incorrect",
+      message: "Necessary information is missing",
       error: errors.array(),
     });
   }
@@ -64,7 +64,7 @@ exports.putSignup = async (req, res) => {
   if (userDoc) {
     res.status(409).json({
       Conflict:
-        "An existing Email address was found, please sign up using a different one.",
+        "Email Address already in use, please sign up using a different one.",
     });
     return;
   }
