@@ -237,60 +237,40 @@ exports.deleteOneNote = async (req, res) => {
 // - - - - - - - - - - - - - - - - - - Extra controllers - - - - - - - - - - - - - - - - - -
 
 // Get a single note of any user by it's ObjectId
-exports.getOneNote = (req, res, next) => {
+exports.getOneNote = async (req, res, next) => {
   const _id = req.params.id;
-  Note.findById(_id)
-    .then((note) => {
-      if (!note) {
-        const error = new Error("Could not find note");
-        error.statusCode = 204;
-        throw error;
-      }
-      res.status(200).json({ info: "Found note", note: note });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
+  const note = await Note.findById(_id);
+  if (!note) {
+    const error = new Error("Could not find note");
+    error.statusCode = 404;
+    throw error;
+  }
+  res.status(200).json({ info: "Found note", note: note });
 };
+
 // Get all notes
-exports.getNotes = (req, res, next) => {
-  Note.find()
-    .then((note) => {
-      if (!note.length) {
-        return res
-          .status(404)
-          .json({ Error: "No notes were found in the database." });
-      }
-      res.status(200).json(note);
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
+exports.getNotes = async (req, res, next) => {
+  const note = await Note.find();
+
+  if (!note.length) {
+    return res
+      .status(404)
+      .json({ Error: "No notes were found in the database." });
+  }
+  res.status(200).json(note);
 };
+
 // Get all Notes by specific Sort
-exports.getAllNotesBySort = (req, res, next) => {
+exports.getAllNotesBySort = async (req, res, next) => {
   const sort = req.params.sort;
-  Note.find()
-    .sort({ updated_At: sort })
-    .then((note) => {
-      if (!note.length) {
-        return res
-          .status(404)
-          .json({ Error: "No notes were found in the database." });
-      } else {
-        res.status(200).json({ info: "Found all notes", note: note });
-      }
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
+
+  const note = await Note.find().sort({ updated_At: sort });
+
+  if (!note.length) {
+    return res
+      .status(404)
+      .json({ Error: "No notes were found in the database." });
+  } else {
+    res.status(200).json({ info: "Found all notes", note: note });
+  }
 };

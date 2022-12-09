@@ -133,37 +133,25 @@ exports.putCategorySet = async (req, res) => {
 /**
  * Gets any category regardless of who is signed in
  */
-exports.getOneCategory = (req, res) => {
+exports.getOneCategory = async (req, res) => {
   const _id = req.params.id;
-  Category.findById(_id)
-    .then((categ) => {
-      res.status(200).json({ Success: "Category was found!", categ });
-    })
-    .catch((err) => {
-      res.status(404).json({ Error: "Could not find the category." });
-    });
+  const categ = await Category.findById(_id);
+  if (!categ) {
+    res.status(404).json({ Error: "Could not find the category." });
+  }
+  res.status(200).json({ Success: "Category was found!", categ });
 };
 
 /**
  * Gets all categories of all users regardless of who is signed in
  */
-exports.getAllCategories = (req, res) => {
-  Category.find()
-    .then((categ) => {
-      if (!categ.length) {
-        res
-          .status(404)
-          .json({ Error: "No Categories were found in the database" });
-      } else {
-        return res
-          .status(200)
-          .json({ Success: "Fetched all categories of all users.", categ });
-      }
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
+exports.getAllCategories = async (req, res) => {
+  const categ = await Category.find();
+  if (!categ.length) {
+    res.status(404).json({ Error: "No Categories were found in the database" });
+  } else {
+    return res
+      .status(200)
+      .json({ Success: "Fetched all categories of all users.", categ });
+  }
 };
