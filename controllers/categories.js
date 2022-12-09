@@ -9,17 +9,13 @@ const { validationResult } = require("express-validator");
  */
 exports.getCategsOfUser = async (req, res) => {
   const id = req.userId;
-  try {
-    const categories = await Category.find({ creator: id });
-    if (!categories.length) {
-      res
-        .status(404)
-        .json({ Error: "You do not have any categories, try adding some!" });
-    } else {
-      res.status(200).json({ UserCategories: categories });
-    }
-  } catch (error) {
-    console.log(err);
+  const categories = await Category.find({ creator: id });
+  if (!categories.length) {
+    res
+      .status(404)
+      .json({ Error: "You do not have any categories, try adding some!" });
+  } else {
+    res.status(200).json({ UserCategories: categories });
   }
 };
 
@@ -31,36 +27,33 @@ exports.getCategsOfUser = async (req, res) => {
 exports.deleteUserCategory = async (req, res) => {
   let creator = req.userId;
   const _id = req.params.id;
-  try {
-    const category = await Category.findById(_id);
-    if (!category) {
-      return res.status(404).json({
-        Error: "Could not find category to delete",
-      });
-    }
-    if (category.creator.toString() !== req.userId) {
-      return res.status(401).json({
-        Error: "Not Authorized to delete category",
-      });
-    }
-    Category.findByIdAndRemove(_id);
-    const user = await User.findById(req.userId);
-    creator = user;
-    user.categories.pull(_id);
-    user.save();
-    res.status(200).json({
-      Success: "Category was deleted",
+  const category = await Category.findById(_id);
+  if (!category) {
+    return res.status(404).json({
+      Error: "Could not find category to delete",
     });
-  } catch (error) {
-    console.log(error);
   }
+  if (category.creator.toString() !== req.userId) {
+    return res.status(401).json({
+      Error: "Not Authorized to delete category",
+    });
+  }
+  Category.findByIdAndRemove(_id);
+  const user = await User.findById(req.userId);
+  creator = user;
+  user.categories.pull(_id);
+  user.save();
+  res.status(200).json({
+    Success: "Category was deleted",
+  });
 };
 
 /**
  * When a signed in user creates a category, it automatically takes his ID.
  * @param -> req.userId from is.auth.js middleware
+ * es7 needs better error handling
  */
-exports.postAddCategory = (req, res) => {
+exports.postAddCategory = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({
@@ -74,103 +67,31 @@ exports.postAddCategory = (req, res) => {
     name: req.body.name,
     creator: Id,
   });
-  Category.find({
+
+  const categories = await Category.find({
     name: req.body.name,
     creator: Id,
-  })
-    .then((categories) => {
-      if (!categories.length) {
-        category
-          .save()
-          .then((category) => {
-            res.status(201).json({
-              category,
-              info: {
-                dateCreated: new Date().toISOString(),
-                status: "Category Created Successfully",
-              },
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        res.status(400).json({
-          Conflict: "A Category with that name already exists for you.",
-        });
-      }
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
+  });
+  if (!categories.length) {
+    const newCateg = await category.save();
+    res.status(201).json({
+      newCateg,
+      info: {
+        dateCreated: new Date().toISOString(),
+        status: "Category Created Successfully",
+      },
     });
-};
-
-/**
- * Allows user to edit only his categories
- * @param -> req.userId from is.auth.js middleware
- */
-exports.putCategory = (req, res) => {
-  const _id = req.params.id;
-  const name = req.body.name;
-  if (!name) {
-    res.status(404).json({ Error: "Do not leave the category name empty" });
   } else {
-    Category.findById(_id)
-      .then((category) => {
-        if (!category) {
-          return res.status(404).json({
-            Error: " Could not find category to update ",
-          });
-        }
-        if (category.creator.toString() !== req.userId) {
-          return res
-            .status(401)
-            .json({ Error: "Unauthorized to edit category" });
-        }
-        const Id = req.userId;
-        Category.find({
-          name: req.body.name,
-          creator: Id,
-        })
-          .then((categories) => {
-            if (!categories.length) {
-              category.name = name;
-              return category
-                .save()
-                .then((result) => {
-                  res.status(200).json({
-                    Success: "Updated category name!",
-                    category: result,
-                  });
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            } else {
-              res.json({
-                Error: `A category with the name '${req.body.name}' was found. Please update using another name.`,
-              });
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        if (!err.statusCode) {
-          err.statusCode = 500;
-        }
-        console.log(err);
-      });
+    res.status(400).json({
+      Conflict: "A Category with that name already exists for you.",
+    });
   }
 };
 
 /**
  * Allows user to edit only his categories
  * @param -> req.userId from is.auth.js middleware
+ * es7 - test works
  */
 exports.putCategorySet = async (req, res) => {
   const _id = req.params.id;
@@ -194,7 +115,7 @@ exports.putCategorySet = async (req, res) => {
     });
     if (!categories.length) {
       category.name = name;
-      category.save();
+      const result = await category.save();
       res.status(200).json({
         Success: "Updated category name!",
         category: result,

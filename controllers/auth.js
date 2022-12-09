@@ -17,38 +17,32 @@ var transporter = nodemailer.createTransport({
  * using mongoose findOne( ) to find an email that matches the input
  * async
  */
-exports.postLogin = async (req, res) => {
+exports.postLogin = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   let loadedUser;
-  try {
-    const user = await User.findOne({ email: email });
-    if (!user) {
-      const error = new Error("");
-      throw error;
-    }
-    loadedUser = user;
-    const isEqual = await bcrypt.compare(password, user.password);
-    if (!isEqual) {
-      return res.status(401).json({ Error: "Invalid Credentials" });
-    }
-    const token = jwt.sign(
-      {
-        email: loadedUser.email,
-        userId: loadedUser._id.toString(),
-      },
-      process.env.SECRET,
-      { expiresIn: "1h" }
-    );
-    res.status(200).json({ token: token, userId: loadedUser._id.toString() });
-    // res.status(200).json({ token: token });
-    console.log("signed in");
-  } catch (error) {
-    console.log(error);
-    res
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    return res
       .status(404)
       .json({ Error: "A user with this email could not be found." });
   }
+  loadedUser = user;
+  const isEqual = await bcrypt.compare(password, user.password);
+  if (!isEqual) {
+    return res.status(401).json({ Error: "Invalid Credentials" });
+  }
+  const token = jwt.sign(
+    {
+      email: loadedUser.email,
+      userId: loadedUser._id.toString(),
+    },
+    process.env.SECRET,
+    { expiresIn: "1h" }
+  );
+  // res.status(200).json({ token: token, userId: loadedUser._id.toString() });
+  res.status(200).json({ token: token });
+  console.log("signed in");
 };
 
 /**

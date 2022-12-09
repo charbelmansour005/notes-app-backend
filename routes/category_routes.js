@@ -8,7 +8,7 @@ const categValid = require("../validations/category_validation");
 router.get("/mycategs", isAuth, categCntrl.getCategsOfUser);
 router.delete("/category/:id", isAuth, categCntrl.deleteUserCategory);
 router.post("/categories", isAuth, categValid, categCntrl.postAddCategory);
-router.put("/category/:id", isAuth, categCntrl.putCategory);
+router.put("/category/:id", isAuth, categCntrl.putCategorySet);
 
 // Extra routes:
 router.get("/onecategory/:id", isAuth, categCntrl.getOneCategory);
