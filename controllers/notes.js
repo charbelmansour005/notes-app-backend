@@ -179,42 +179,36 @@ exports.postAddNote = async (req, res) => {
  * Must be authenticated with JWT Token to Update a note
  * ( Signed in user may only update his own note(s) )
  */
-exports.putOneNote = (req, res) => {
+exports.putOneNote = async (req, res) => {
   const _id = req.params.id;
   const content = req.body.content;
   const tags = req.body.tags;
   const updated_At = new Date();
-  Note.findById(_id)
-    .then((note) => {
-      if (!note) {
-        return res.status(404).json({
-          Error: "Could not update, note was not found.",
-        });
-      }
-      if (note.creator.toString() !== req.userId) {
-        return res.status(401).json({ Error: "Not authorized to update note" });
-      }
-      note.content = content;
-      note.tags = tags;
-      note.updated_At = updated_At;
-      if (!content) {
-        res.status(400).json({ Error: "Do not leave the content field empty" });
-      } else {
-        return note.save();
-      }
-    })
-    .then((result) => {
-      res.status(200).json({
-        Success: "Updated note successfully.",
-        note: result,
-      });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
+  const note = await Note.findById(_id);
+  if (!note) {
+    return res.status(404).json({
+      Error: "Could not update, note was not found.",
     });
+  }
+  if (note.creator.toString() !== req.userId) {
+    return res
+      .status(404)
+      .json({ Error: "Could not update, note was not found." });
+  }
+  note.content = content;
+  note.tags = tags;
+  note.updated_At = updated_At;
+  if (!content) {
+    res
+      .status(400)
+      .json({ Error: "Please do not leave the content field empty" });
+  } else {
+    note.save();
+    res.status(200).json({
+      Success: "Updated note successfully.",
+      Result: note,
+    });
+  }
 };
 /**
  * Signed in user may only delete one of his notes
@@ -292,204 +286,6 @@ exports.getAllNotesBySort = (req, res, next) => {
       } else {
         res.status(200).json({ info: "Found all notes", note: note });
       }
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
-};
-
-// Post add note React
-exports.postAddUserNote = (req, res) => {
-  const content = req.body.content;
-  const tags = req.body.tags;
-  const categoryName = req.body.categoryName;
-  let creator = req.params.userId;
-  const note = new Note({
-    content: content,
-    creator: creator,
-    tags: tags,
-    categoryName: categoryName,
-  });
-  //look for inserted Category
-  Category.find({
-    name: categoryName,
-    creator: creator,
-  }) //if not found
-    .then((categories) => {
-      if (!categories.length) {
-        const newCatergory = new Category({
-          //create category with it's name
-          name: categoryName,
-          creator: creator,
-        });
-        newCatergory
-          .save()
-          .then(() => {
-            return User.findById(req.params.userId);
-          })
-          .then((user) => {
-            //push new category to the user's categories
-            creator = user;
-            user.categories.push(newCatergory._id);
-            return user.save();
-          })
-          .then(() => {
-            const note = new Note({
-              //then create the note
-              content: content,
-              creator: creator,
-              tags: tags,
-              categoryName: req.body.categoryName, //with the newly created category
-            });
-            note
-              .save()
-              .then(() => {
-                return User.findById(req.params.userId);
-              })
-              .then((user) => {
-                //and push the note into the user's notes
-                creator = user;
-                user.notes.push(note._id);
-                return user.save();
-              });
-            res.status(201).json({
-              Success: `New Note and new '${req.body.categoryName}' Category was created for the note as well.`,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-            res.status(404).json({
-              Error: "Make sure you have filled out all the required fields",
-            });
-          });
-        return console.log("done, note saved with new category");
-      } else {
-        note //if the category already exists for the user
-          .save() //create the note
-          .then(() => {
-            return User.findById(req.params.userId);
-          })
-          .then((user) => {
-            creator = user; //and make the relation
-            user.notes.push(note._id);
-            return user.save();
-          });
-        console.log(
-          `Note created and added to exsiting '${req.body.categoryName}' category`
-        );
-        res.status(201).json({
-          Success: `Note created and added to exsiting '${req.body.categoryName}' category`,
-        });
-      }
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
-};
-
-// react deleteOneNoteReact
-
-exports.deleteOneNoteReact = (req, res) => {
-  let creator = req.params.userId;
-  const _id = req.params.id;
-  Note.findById(_id)
-    .then((note) => {
-      if (!note) {
-        res.status(404).json({
-          Error: "Could not delete, note was not found",
-        });
-      }
-      if (note.creator.toString() !== req.params.userId) {
-        return res
-          .status(401)
-          .json({ Error: "Not authorized to delete this note" });
-      }
-      return Note.findByIdAndRemove(_id);
-    })
-    .then(() => {
-      return User.findById(req.params.userId);
-    })
-    .then((user) => {
-      creator = user;
-      console.log(user.notes);
-      user.notes.pull(_id);
-      return user.save();
-    })
-    .then((result) => {
-      console.log(result);
-      res.status(200).json({
-        Success: "Note was deleted.",
-      });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
-};
-
-// React PutOneNoteReact
-
-exports.putOneNoteReact = (req, res) => {
-  const _id = req.params.id;
-  const userId = req.params.userId;
-  const content = req.body.content;
-  const tags = req.body.tags;
-  const updated_At = new Date();
-  Note.findById(_id)
-    .then((note) => {
-      if (!note) {
-        return res.status(404).json({
-          Error: "Could not update, note was not found.",
-        });
-      }
-      if (note.creator.toString() !== userId) {
-        return res.status(401).json({ Error: "Not authorized to update note" });
-      }
-      note.content = content;
-      note.tags = tags;
-      note.updated_At = updated_At;
-      if (!content) {
-        res.status(404).json({ Error: "Do not leave the content field empty" });
-      } else {
-        return note.save();
-      }
-    })
-    .then((result) => {
-      res.status(200).json({
-        Success: "Updated note successfully.",
-        note: result,
-      });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
-};
-
-// React Get a single note of any user by it's ObjectId
-exports.getOneNoteReact = (req, res, next) => {
-  const _id = req.params.id;
-  const userId = req.params.userId;
-  Note.findById(_id)
-    .then((note) => {
-      if (!note) {
-        const error = new Error("Could not find note");
-        error.statusCode = 204;
-        throw error;
-      } else if (note.creator.toString() !== userId) {
-        return res.status(404).json({ message: "not found" });
-      }
-      res.status(200).json({ info: "Found note", note: note });
     })
     .catch((err) => {
       if (!err.statusCode) {
