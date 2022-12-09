@@ -75,12 +75,12 @@ exports.putSignup = async (req, res) => {
     password: hashedPassword,
   });
   authenticatedUser.save();
-  res.status(200).json({
-    Success: "Signed up!",
-  });
   transporter.sendMail({
     to: email,
     from: "employees@node-complete.com",
     html: "<h1>Welcome! Thank you for choosing us.</h1>",
+  });
+  res.status(200).json({
+    Success: "Signed up!",
   });
 };

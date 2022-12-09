@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema({
   },
   name: {
     type: String,
-    required: [false, "Please enter your name."], //was true
+    required: [true, "Please enter your name."], //was true
   },
   notes: [
     {

@@ -54,7 +54,6 @@ exports.getNotesOfUser = async (req, res) => {
 };
 
 /**
- *
  * @param {REACT} req
  * @param {REACT} res
  * @returns
@@ -151,15 +150,6 @@ exports.postAddNote = (req, res) => {
         newCatergory
           .save()
           .then(() => {
-            return User.findById(req.userId);
-          })
-          .then((user) => {
-            //push new category to the user's categories
-            creator = user;
-            user.categories.push(newCatergory._id);
-            return user.save();
-          })
-          .then(() => {
             const note = new Note({
               //then create the note
               content: content,
@@ -167,17 +157,7 @@ exports.postAddNote = (req, res) => {
               tags: tags,
               categoryName: req.body.categoryName, //with the newly created category
             });
-            note
-              .save()
-              .then(() => {
-                return User.findById(req.userId);
-              })
-              .then((user) => {
-                //and push the note into the user's notes
-                creator = user;
-                user.notes.push(note._id);
-                return user.save();
-              });
+            note.save();
             res.status(201).json({
               Success: `New Note and new '${req.body.categoryName}' Category was created for the note as well.`,
             });
@@ -191,15 +171,7 @@ exports.postAddNote = (req, res) => {
         return console.log("done, note saved with new category");
       } else {
         note //if the category already exists for the user
-          .save() //create the note
-          .then(() => {
-            return User.findById(req.userId);
-          })
-          .then((user) => {
-            creator = user; //and make the relation
-            user.notes.push(note._id);
-            return user.save();
-          });
+          .save(); //create the note
         console.log(
           `Note created and added to exsiting '${req.body.categoryName}' category`
         );
