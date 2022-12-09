@@ -60,31 +60,27 @@ exports.putSignup = async (req, res) => {
   const email = req.body.email;
   const name = req.body.name;
   const password = req.body.password;
-  try {
-    const userDoc = await User.findOne({ email: email });
-    if (userDoc) {
-      res.status(409).json({
-        Conflict:
-          "An existing Email address was found, please sign up using a different one.",
-      });
-      return;
-    }
-    const hashedPassword = await bcrypt.hash(password, 12);
-    const authenticatedUser = new User({
-      name: name,
-      email: email,
-      password: hashedPassword,
+  const userDoc = await User.findOne({ email: email });
+  if (userDoc) {
+    res.status(409).json({
+      Conflict:
+        "An existing Email address was found, please sign up using a different one.",
     });
-    authenticatedUser.save();
-    res.status(200).json({
-      Success: "Signed up!",
-    });
-    transporter.sendMail({
-      to: email,
-      from: "employees@node-complete.com",
-      html: "<h1>Welcome! Thank you for choosing us.</h1>",
-    });
-  } catch (error) {
-    console.log(error);
+    return;
   }
+  const hashedPassword = await bcrypt.hash(password, 12);
+  const authenticatedUser = new User({
+    name: name,
+    email: email,
+    password: hashedPassword,
+  });
+  authenticatedUser.save();
+  res.status(200).json({
+    Success: "Signed up!",
+  });
+  transporter.sendMail({
+    to: email,
+    from: "employees@node-complete.com",
+    html: "<h1>Welcome! Thank you for choosing us.</h1>",
+  });
 };

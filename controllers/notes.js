@@ -151,6 +151,15 @@ exports.postAddNote = (req, res) => {
         newCatergory
           .save()
           .then(() => {
+            return User.findById(req.userId);
+          })
+          .then((user) => {
+            //push new category to the user's categories
+            creator = user;
+            user.categories.push(newCatergory._id);
+            return user.save();
+          })
+          .then(() => {
             const note = new Note({
               //then create the note
               content: content,
@@ -158,7 +167,17 @@ exports.postAddNote = (req, res) => {
               tags: tags,
               categoryName: req.body.categoryName, //with the newly created category
             });
-            note.save();
+            note
+              .save()
+              .then(() => {
+                return User.findById(req.userId);
+              })
+              .then((user) => {
+                //and push the note into the user's notes
+                creator = user;
+                user.notes.push(note._id);
+                return user.save();
+              });
             res.status(201).json({
               Success: `New Note and new '${req.body.categoryName}' Category was created for the note as well.`,
             });
@@ -172,7 +191,15 @@ exports.postAddNote = (req, res) => {
         return console.log("done, note saved with new category");
       } else {
         note //if the category already exists for the user
-          .save(); //create the note
+          .save() //create the note
+          .then(() => {
+            return User.findById(req.userId);
+          })
+          .then((user) => {
+            creator = user; //and make the relation
+            user.notes.push(note._id);
+            return user.save();
+          });
         console.log(
           `Note created and added to exsiting '${req.body.categoryName}' category`
         );
@@ -230,46 +257,28 @@ exports.putOneNote = (req, res) => {
       console.log(err);
     });
 };
-
 /**
  * Signed in user may only delete one of his notes
  * @param - ObjectId of the note to be deleted
+ * async
  */
-exports.deleteOneNote = (req, res) => {
-  let creator = req.userId;
+exports.deleteOneNote = async (req, res) => {
+  const creator = req.userId;
   const _id = req.params.id;
-  Note.findById(_id)
-    .then((note) => {
-      if (!note) {
-        res.status(404).json({
-          Error: "Could not delete, note was not found",
-        });
-      }
-      if (note.creator.toString() !== req.userId) {
-        return res
-          .status(401)
-          .json({ Error: "Not authorized to delete this note" });
-      }
-      return Note.findByIdAndRemove(_id);
-    })
-    .then(() => {
-      return User.findById(req.userId);
-    })
-    .then((user) => {
-      creator = user;
-      console.log(user.notes);
-      user.notes.pull(_id);
-      return user.save();
-    })
-    .then((result) => {
-      console.log(result);
-      res.status(200).json({
-        Success: "Note was deleted.",
-      });
-    })
-    .catch((err) => {
-      throw new Error(err);
+  const note = await Note.findById(_id);
+  if (!note) {
+    return res.status(404).json({
+      Error: "Could not delete, note was not found",
     });
+  } else if (note.creator.toString() !== creator) {
+    return res
+      .status(401)
+      .json({ Error: "Not authorized to delete this note" });
+  }
+  Note.findByIdAndRemove(_id);
+  res.status(200).json({
+    Success: "Note was deleted.",
+  });
 };
 
 // - - - - - - - - - - - - - - - - - - Extra controllers - - - - - - - - - - - - - - - - - -
