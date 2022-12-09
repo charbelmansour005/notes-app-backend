@@ -1,6 +1,7 @@
 const Note = require("../models/note");
 const User = require("../models/user");
 const Category = require("../models/category");
+const { validationResult } = require("express-validator");
 
 /**
  * User can filter his Notes by a specific category he enters in the URL
@@ -122,9 +123,15 @@ exports.getUserNotesLatest = async (req, res) => {
 /**
  * Creating a note for the signed in user
  * @param - userId auto inserted just by being signed in
- * make async
  */
-exports.postAddNote = (req, res) => {
+exports.postAddNote = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      message: "Necessary information is missing",
+      error: errors.array(),
+    });
+  }
   const content = req.body.content;
   const tags = req.body.tags;
   const categoryName = req.body.categoryName;
@@ -136,56 +143,36 @@ exports.postAddNote = (req, res) => {
     categoryName: categoryName,
   });
   //look for inserted Category
-  Category.find({
+  const categories = await Category.find({
     name: categoryName,
     creator: creator,
-  }) //if not found
-    .then((categories) => {
-      if (!categories.length) {
-        const newCatergory = new Category({
-          //create category with it's name
-          name: categoryName,
-          creator: creator,
-        });
-        newCatergory
-          .save()
-          .then(() => {
-            const note = new Note({
-              //then create the note
-              content: content,
-              creator: creator,
-              tags: tags,
-              categoryName: req.body.categoryName, //with the newly created category
-            });
-            note.save();
-            res.status(201).json({
-              Success: `New Note and new '${req.body.categoryName}' Category was created for the note as well.`,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-            res.status(404).json({
-              Error: "Make sure you have filled out all the required fields",
-            });
-          });
-        return console.log("done, note saved with new category");
-      } else {
-        note //if the category already exists for the user
-          .save(); //create the note
-        console.log(
-          `Note created and added to exsiting '${req.body.categoryName}' category`
-        );
-        res.status(201).json({
-          Success: `Note created and added to exsiting '${req.body.categoryName}' category`,
-        });
-      }
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
+  });
+  if (!categories.length) {
+    const newCatergory = new Category({
+      //create category with it's name
+      name: categoryName,
+      creator: creator,
     });
+    newCatergory.save();
+    const note = new Note({
+      //then create the note
+      content: content,
+      creator: creator,
+      tags: tags,
+      categoryName: req.body.categoryName, //with the newly created category
+    });
+    note.save();
+    res.status(201).json({
+      Success: `New Note and new '${req.body.categoryName}' Category was created for the note as well.`,
+    });
+  } else {
+    note //if the category already exists for the user
+      .save(); //create the note
+
+    res.status(201).json({
+      Success: `Note created and added to your '${req.body.categoryName}' category`,
+    });
+  }
 };
 
 /**
@@ -211,7 +198,7 @@ exports.putOneNote = (req, res) => {
       note.tags = tags;
       note.updated_At = updated_At;
       if (!content) {
-        res.status(404).json({ Error: "Do not leave the content field empty" });
+        res.status(400).json({ Error: "Do not leave the content field empty" });
       } else {
         return note.save();
       }

@@ -14,9 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan("tiny"));
 
-const apiRoutes_notes = require("./routes/note_routes");
-const apiRoutes_auth = require("./routes/auth_routes.js");
-const apiRoutes_category = require("./routes/category_routes");
+const apiRoutes_notes = require("./routes/note.routes");
+const apiRoutes_auth = require("./routes/auth.routes");
+const apiRoutes_category = require("./routes/category.routes");
 
 app.use("/API", apiRoutes_notes);
 app.use("/API", apiRoutes_category);
