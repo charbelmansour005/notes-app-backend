@@ -3,7 +3,7 @@ const router = express.Router();
 const isAuth = require("../middleware/is.auth");
 
 const categCntrl = require("../controllers/categories");
-const categValid = require("../validations/category_validation");
+const categValid = require("../validations/category.validation");
 
 router.get("/mycategs", isAuth, categCntrl.getCategsOfUser);
 router.delete("/category/:id", isAuth, categCntrl.deleteUserCategory);
