@@ -1,71 +1,59 @@
 const Category = require("../models/category");
 const User = require("../models/user");
 const { validationResult } = require("express-validator");
+
 /**
  * fetches the categories created by the signed in user
  * @param -> req.userId from is.auth.js middleware
+ * async
  */
-exports.getCategsOfUser = (req, res) => {
+exports.getCategsOfUser = async (req, res) => {
   const id = req.userId;
-  Category.find({ creator: id })
-    .then((categories) => {
-      if (!categories.length) {
-        res
-          .status(404)
-          .json({ Error: "You do not have any categories, try adding some!" });
-      } else {
-        res.status(200).json({ UserCategories: categories });
-      }
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
-    });
+  try {
+    const categories = await Category.find({ creator: id });
+    if (!categories.length) {
+      res
+        .status(404)
+        .json({ Error: "You do not have any categories, try adding some!" });
+    } else {
+      res.status(200).json({ UserCategories: categories });
+    }
+  } catch (error) {
+    console.log(err);
+  }
 };
 
 /**
  * Signed in user may only delete one of his own categories
  * @param -> ObjectId of the target Category to be deleted
+ * async
  */
-exports.deleteUserCategory = (req, res) => {
+exports.deleteUserCategory = async (req, res) => {
   let creator = req.userId;
   const _id = req.params.id;
-  Category.findById(_id)
-    .then((category) => {
-      if (!category) {
-        res.status(404).json({
-          Error: "Could not find category to delete",
-        });
-      }
-      if (category.creator.toString() !== req.userId) {
-        return res.status(401).json({
-          Error: "Not Authorized to delete category",
-        });
-      }
-      return Category.findByIdAndRemove(_id);
-    })
-    .then(() => {
-      return User.findById(req.userId);
-    })
-    .then((user) => {
-      creator = user;
-      user.categories.pull(_id);
-      return user.save();
-    })
-    .then((result) => {
-      console.log(result);
-      res.status(200).json({
-        Success: "Category was deleted",
+  try {
+    const category = await Category.findById(_id);
+    if (!category) {
+      return res.status(404).json({
+        Error: "Could not find category to delete",
       });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      console.log(err);
+    }
+    if (category.creator.toString() !== req.userId) {
+      return res.status(401).json({
+        Error: "Not Authorized to delete category",
+      });
+    }
+    Category.findByIdAndRemove(_id);
+    const user = await User.findById(req.userId);
+    creator = user;
+    user.categories.pull(_id);
+    user.save();
+    res.status(200).json({
+      Success: "Category was deleted",
     });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /**
@@ -177,6 +165,45 @@ exports.putCategory = (req, res) => {
         }
         console.log(err);
       });
+  }
+};
+
+/**
+ * Allows user to edit only his categories
+ * @param -> req.userId from is.auth.js middleware
+ */
+exports.putCategorySet = async (req, res) => {
+  const _id = req.params.id;
+  const name = req.body.name;
+  if (!name) {
+    res.status(404).json({ Error: "Do not leave the category name empty" });
+  } else {
+    const category = await Category.findById(_id);
+    if (!category) {
+      return res.status(404).json({
+        Error: " Could not find category to update ",
+      });
+    }
+    if (category.creator.toString() !== req.userId) {
+      return res.status(401).json({ Error: "Unauthorized to edit category" });
+    }
+    const Id = req.userId;
+    const categories = await Category.find({
+      name: req.body.name,
+      creator: Id,
+    });
+    if (!categories.length) {
+      category.name = name;
+      category.save();
+      res.status(200).json({
+        Success: "Updated category name!",
+        category: result,
+      });
+    } else {
+      res.json({
+        Error: `A category with the name '${req.body.name}' was found. Please update using another name.`,
+      });
+    }
   }
 };
 

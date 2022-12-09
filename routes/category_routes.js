@@ -2,21 +2,16 @@ const express = require("express");
 const router = express.Router();
 const isAuth = require("../middleware/is.auth");
 
-const categoryController = require("../controllers/categories");
-const categoryValidation = require("../validations/category_validation");
+const categCntrl = require("../controllers/categories");
+const categValid = require("../validations/category_validation");
 
-router.get("/categ", isAuth, categoryController.getCategsOfUser);
-router.delete("/category/:id", isAuth, categoryController.deleteUserCategory);
-router.post(
-  "/categories",
-  isAuth,
-  categoryValidation,
-  categoryController.postAddCategory
-);
-router.put("/category/:id", isAuth, categoryController.putCategory);
+router.get("/mycategs", isAuth, categCntrl.getCategsOfUser);
+router.delete("/category/:id", isAuth, categCntrl.deleteUserCategory);
+router.post("/categories", isAuth, categValid, categCntrl.postAddCategory);
+router.put("/category/:id", isAuth, categCntrl.putCategory);
 
 // Extra routes:
-router.get("/onecategory/:id", isAuth, categoryController.getOneCategory);
-router.get("/allcategories", isAuth, categoryController.getAllCategories);
+router.get("/onecategory/:id", isAuth, categCntrl.getOneCategory);
+router.get("/allcategories", isAuth, categCntrl.getAllCategories);
 
 module.exports = router;

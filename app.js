@@ -1,19 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3500;
 const MONGODB_URI = process.env.MONGODB; //replace with your ATLAS database link
 const app = express();
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 
-app.use(
-  cors({
-    methods: ["POST", "GET", "UPDATE", "DELETE", "PATCH"],
-    origin: "*",
-  })
-);
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

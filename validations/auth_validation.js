@@ -9,10 +9,10 @@ const signUpValidation = [
     .trim()
     .isLength({ min: 13 })
     .withMessage("Password must have a minimum of 13 characters."),
-  body("name")
-    .trim()
-    .isLength({ min: 1 })
-    .withMessage("Please enter your name."),
+  // body("name")
+  //   .trim()
+  //   .isLength({ min: 1 })
+  //   .withMessage("Please enter your name."),
 ];
 
 module.exports = signUpValidation;
