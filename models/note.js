@@ -11,7 +11,10 @@ const noteSchema = mongoose.Schema({
     required: true,
   },
   updated_At: { type: Date, default: Date.now() },
-  tags: [{ type: String, index: true }],
+  tags: {
+    type: [String],
+    index: true,
+  },
   categoryName: {
     type: String,
     ref: "Category",

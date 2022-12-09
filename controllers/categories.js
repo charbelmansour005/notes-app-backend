@@ -122,7 +122,7 @@ exports.putCategorySet = async (req, res) => {
       });
     } else {
       res.json({
-        Error: `A category with the name '${req.body.name}' was found. Please update using another name.`,
+        Error: `A category with the name '${req.body.name}' was found. Please update to another name.`,
       });
     }
   }

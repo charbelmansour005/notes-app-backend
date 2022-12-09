@@ -16,18 +16,6 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, "Please enter your name."],
   },
-  // notes: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: "Note",
-  //   },
-  // ],
-  // categories: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: "Category",
-  //   },
-  // ],
 });
 
 const User = mongoose.model("User", userSchema);
